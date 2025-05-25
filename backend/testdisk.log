@@ -1,0 +1,1180 @@
+
+
+Sat May 24 14:29:54 2025
+Command line: TestDisk
+
+TestDisk 7.2, Data Recovery Utility, February 2024
+Christophe GRENIER <grenier@cgsecurity.org>
+https://www.cgsecurity.org
+OS: Linux, kernel 6.11.0-26-generic (#26-Ubuntu SMP PREEMPT_DYNAMIC Sat Apr 12 11:25:41 UTC 2025) x86_64
+Compiler: GCC 14.2
+ext2fs lib: 1.47.1, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.5
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+Warning: can't get size for Disk /dev/loop39 - 0 B - 0 sectors (RO), sector size=512
+Hard disk list
+Disk /dev/loop0 - 333 MB / 318 MiB - 651704 sectors (RO), sector size=512
+Disk /dev/loop1 - 4096 B - 8 sectors (RO), sector size=512
+Disk /dev/loop10 - 12 MB / 11 MiB - 24064 sectors (RO), sector size=512
+Disk /dev/loop11 - 119 MB / 114 MiB - 233704 sectors (RO), sector size=512
+Disk /dev/loop12 - 253 MB / 241 MiB - 495504 sectors (RO), sector size=512
+Disk /dev/loop13 - 116 MB / 110 MiB - 227192 sectors (RO), sector size=512
+Disk /dev/loop14 - 253 MB / 241 MiB - 495512 sectors (RO), sector size=512
+Disk /dev/loop15 - 11 MB / 10 MiB - 21952 sectors (RO), sector size=512
+Disk /dev/loop16 - 11 MB / 11 MiB - 22800 sectors (RO), sector size=512
+Disk /dev/loop17 - 529 MB / 505 MiB - 1034424 sectors (RO), sector size=512
+Disk /dev/loop18 - 172 MB / 164 MiB - 337560 sectors (RO), sector size=512
+Disk /dev/loop19 - 541 MB / 516 MiB - 1056784 sectors (RO), sector size=512
+Disk /dev/loop2 - 58 MB / 55 MiB - 113384 sectors (RO), sector size=512
+Disk /dev/loop20 - 424 MB / 404 MiB - 828160 sectors (RO), sector size=512
+Disk /dev/loop21 - 14 MB / 13 MiB - 27808 sectors (RO), sector size=512
+Disk /dev/loop22 - 96 MB / 91 MiB - 187776 sectors (RO), sector size=512
+Disk /dev/loop23 - 94 MB / 89 MiB - 183680 sectors (RO), sector size=512
+Disk /dev/loop24 - 217 MB / 207 MiB - 424736 sectors (RO), sector size=512
+Disk /dev/loop25 - 140 MB / 134 MiB - 274904 sectors (RO), sector size=512
+Disk /dev/loop26 - 35 MB / 33 MiB - 68792 sectors (RO), sector size=512
+Disk /dev/loop27 - 15 MB / 14 MiB - 29528 sectors (RO), sector size=512
+Disk /dev/loop28 - 14 MB / 13 MiB - 28648 sectors (RO), sector size=512
+Disk /dev/loop29 - 11 MB / 10 MiB - 21848 sectors (RO), sector size=512
+Disk /dev/loop3 - 333 MB / 318 MiB - 651704 sectors (RO), sector size=512
+Disk /dev/loop30 - 153 MB / 146 MiB - 299976 sectors (RO), sector size=512
+Disk /dev/loop31 - 11 MB / 10 MiB - 22176 sectors (RO), sector size=512
+Disk /dev/loop32 - 40 MB / 38 MiB - 79520 sectors (RO), sector size=512
+Disk /dev/loop33 - 53 MB / 50 MiB - 104232 sectors (RO), sector size=512
+Disk /dev/loop34 - 581 KB / 568 KiB - 1136 sectors (RO), sector size=512
+Disk /dev/loop35 - 577 KB / 564 KiB - 1128 sectors (RO), sector size=512
+Disk /dev/loop36 - 27 MB / 25 MiB - 53128 sectors (RO), sector size=512
+Disk /dev/loop37 - 466 MB / 445 MiB - 911384 sectors (RO), sector size=512
+Disk /dev/loop38 - 475 MB / 453 MiB - 929456 sectors (RO), sector size=512
+Disk /dev/loop4 - 66 MB / 63 MiB - 130600 sectors (RO), sector size=512
+Disk /dev/loop40 - 220 MB / 210 MiB - 430552 sectors (RO), sector size=512
+Disk /dev/loop41 - 45 KB / 44 KiB - 88 sectors (RO), sector size=512
+Disk /dev/loop42 - 220 MB / 210 MiB - 430552 sectors (RO), sector size=512
+Disk /dev/loop5 - 77 MB / 74 MiB - 152056 sectors (RO), sector size=512
+Disk /dev/loop6 - 77 MB / 73 MiB - 151328 sectors (RO), sector size=512
+Disk /dev/loop7 - 70 MB / 66 MiB - 136728 sectors (RO), sector size=512
+Disk /dev/loop8 - 12 MB / 11 MiB - 23992 sectors (RO), sector size=512
+Disk /dev/loop9 - 70 MB / 66 MiB - 136728 sectors (RO), sector size=512
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32, sector size=512 - WD PC SN740 SDDPNQD-1T00-1127, S/N:2404F0404348
+
+Partition table type (auto): EFI GPT
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - WD PC SN740 SDDPNQD-1T00-1127
+Partition table type: EFI GPT
+
+Analyse Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32
+hdr_size=92
+hdr_lba_self=1
+hdr_lba_alt=2000409263 (expected 2000409263)
+hdr_lba_start=2048
+hdr_lba_end=2000409230
+hdr_lba_table=2
+hdr_entries=128
+hdr_entsz=128
+Current partition structure:
+ 1 P EFI System                  2048    2203647    2201600
+ 2 P Linux filesys. data      2203648 2000406527 1998202880
+
+search_part()
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32
+FAT32 at 1/0/1
+FAT1 : 32-2183
+FAT2 : 2184-4335
+start_rootdir : 4336 root cluster : 2
+Data : 4336-2201599
+sectors : 2201600
+cluster_size : 8
+no_of_cluster : 274658 (2 - 274659)
+fat_length 2152 calculated 2146
+set_FAT_info: name from BS used
+
+FAT32 at 1/0/1
+FAT: cluster=2(0x2), pos=6384
+     EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+
+Results
+   P EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+   P Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 2201600 linear /dev/nvme0n1 2048" | dmsetup create test0
+echo "0 1998202880 linear /dev/nvme0n1 2203648" | dmsetup create test1
+
+interface_write()
+ 1 P EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+ 2 P Linux filesys. data      2203648 2000406527 1998202880
+
+search_part()
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32
+FAT32 at 1/0/1
+FAT1 : 32-2183
+FAT2 : 2184-4335
+start_rootdir : 4336 root cluster : 2
+Data : 4336-2201599
+sectors : 2201600
+cluster_size : 8
+no_of_cluster : 274658 (2 - 274659)
+fat_length 2152 calculated 2146
+set_FAT_info: name from BS used
+
+FAT32 at 1/0/1
+FAT: cluster=2(0x2), pos=6384
+     EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+FAT32 at 1/0/7
+FAT1 : 32-2183
+FAT2 : 2184-4335
+start_rootdir : 4336 root cluster : 2
+Data : 4336-2201599
+sectors : 2201600
+cluster_size : 8
+no_of_cluster : 274658 (2 - 274659)
+fat_length 2152 calculated 2146
+set_FAT_info: name from BS used
+
+FAT32 at 1/0/7
+FAT: cluster=2(0x2), pos=6384
+     EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+FAT32 at 1/0/7
+FAT1 : 32-2183
+FAT2 : 2184-4335
+start_rootdir : 4336 root cluster : 2
+Data : 4336-2201599
+sectors : 2201600
+cluster_size : 8
+no_of_cluster : 274658 (2 - 274659)
+fat_length 2152 calculated 2146
+set_FAT_info: name from BS used
+
+FAT32 at 1/0/7
+FAT: cluster=2(0x2), pos=6390
+FAT: cluster=771(0x303), pos=12542
+FAT: cluster=1540(0x604), pos=18694
+FAT: cluster=2309(0x905), pos=24846
+FAT: cluster=3078(0xc06), pos=30998
+FAT: cluster=3847(0xf07), pos=37150
+     MS Data                     2054    2203653    2201600 [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+
+block_group_nr 1
+
+recover_EXT2: "e2fsck -b 32768 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=1/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 1
+
+recover_EXT2: "e2fsck -b 32768 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=1/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 3
+
+recover_EXT2: "e2fsck -b 98304 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 3
+
+recover_EXT2: "e2fsck -b 98304 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 5
+
+recover_EXT2: "e2fsck -b 163840 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=5/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 5
+
+recover_EXT2: "e2fsck -b 163840 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=5/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 7
+
+recover_EXT2: "e2fsck -b 229376 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=7/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 7
+
+recover_EXT2: "e2fsck -b 229376 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=7/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 9
+
+recover_EXT2: "e2fsck -b 294912 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=9/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 9
+
+recover_EXT2: "e2fsck -b 294912 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=9/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 25
+
+recover_EXT2: "e2fsck -b 819200 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=25/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 25
+
+recover_EXT2: "e2fsck -b 819200 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=25/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 27
+
+recover_EXT2: "e2fsck -b 884736 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=27/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 27
+
+recover_EXT2: "e2fsck -b 884736 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=27/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 49
+
+recover_EXT2: "e2fsck -b 1605632 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=49/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 49
+
+recover_EXT2: "e2fsck -b 1605632 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=49/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 8544/53/10
+
+block_group_nr 81
+
+recover_EXT2: "e2fsck -b 2654208 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=81/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 81
+
+recover_EXT2: "e2fsck -b 2654208 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=81/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 13802/56/15
+
+LVM magic value at 14154/34/2
+FAT12 at 14557/39/9
+check_FAT: Unusual media descriptor (0xf8!=0xf0)
+FAT1 : 1-6
+FAT2 : 7-12
+start_rootdir : 13
+Data : 45-8188
+sectors : 8192
+cluster_size : 4
+no_of_cluster : 2036 (2 - 2037)
+fat_length 6 calculated 6
+heads/cylinder 2 (FAT) != 64 (HD)
+
+FAT12 at 14557/39/9
+     EFI System              29813992   29822183       8192 [EFI System Partition] [MEMTEST-ESP]
+     FAT12, blocksize=2048, 4194 KB / 4096 KiB
+FAT12 at 14561/39/17
+check_FAT: Unusual media descriptor (0xf8!=0xf0)
+FAT1 : 1-6
+FAT2 : 7-12
+start_rootdir : 13
+Data : 45-8188
+sectors : 8192
+cluster_size : 4
+no_of_cluster : 2036 (2 - 2037)
+fat_length 6 calculated 6
+heads/cylinder 2 (FAT) != 64 (HD)
+
+FAT12 at 14561/39/17
+     EFI System              29822192   29830383       8192 [EFI System Partition] [MEMTEST-ESP]
+     FAT12, blocksize=2048, 4194 KB / 4096 KiB
+
+block_group_nr 125
+
+recover_EXT2: "e2fsck -b 4096000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=125/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 125
+
+recover_EXT2: "e2fsck -b 4096000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=125/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 21124/29/3
+
+LVM magic value at 23789/49/8
+
+block_group_nr 243
+
+recover_EXT2: "e2fsck -b 7962624 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=243/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 243
+
+recover_EXT2: "e2fsck -b 7962624 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=243/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 343
+
+recover_EXT2: "e2fsck -b 11239424 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=343/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 343
+
+recover_EXT2: "e2fsck -b 11239424 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=343/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 58969/48/26
+
+SYSV4 Marker at 59061/36/27
+
+recover_sysv4
+       0 0000 0000 00 00 00 00 00 00 00 00
+     Unknown                120958106  120958105          0 [Šÿÿº]
+     SysV4, 0 B
+       0 0000 0000 00 00 00 00 00 00 00 00
+Partition not added.
+
+block_group_nr 625
+
+recover_EXT2: "e2fsck -b 20480000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=625/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 625
+
+recover_EXT2: "e2fsck -b 20480000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=625/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 83448/37/23
+
+block_group_nr 729
+
+recover_EXT2: "e2fsck -b 23887872 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=729/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 729
+
+recover_EXT2: "e2fsck -b 23887872 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=729/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 102096/37/23
+
+LVM magic value at 102168/37/23
+
+LVM magic value at 118736/37/23
+
+LVM magic value at 122941/7/13
+NTFS at 123269/0/1
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           104751104
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                147703809  252454912  104751104
+     NTFS found using backup sector, blocksize=4096, 53 GB / 49 GiB
+NTFS at 123269/0/1
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           104751104
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                252454912  357206015  104751104
+     NTFS, blocksize=4096, 53 GB / 49 GiB
+NTFS at 123270/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           104751104
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                147707904  252459007  104751104
+     NTFS found using backup sector, blocksize=4096, 53 GB / 49 GiB
+NTFS at 123270/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           104751104
+sectors_per_cluster       8
+mft_lcn                   786432
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                252459007  357210110  104751104
+     NTFS, blocksize=4096, 53 GB / 49 GiB
+FAT12 at 124396/41/17
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 124396/41/17
+     EFI System             254764336  254767215       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+NTFS at 124400/4/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                254765171  254771344       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 124400/4/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                254771344  254777517       6174 [Boot]
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+FAT12 at 128679/22/1
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 128679/22/1
+     EFI System             263535296  263538175       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+NTFS at 128689/0/1
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                263452673  263555072     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+NTFS at 128689/0/1
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                263555072  263657471     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+FAT12 at 128931/42/9
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 128931/42/9
+     EFI System             264052040  264054919       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+FAT12 at 128937/18/9
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 128937/18/9
+     EFI System             264063560  264066439       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+FAT12 at 129137/23/25
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 129137/23/25
+     EFI System             264473336  264476215       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+FAT12 at 129139/0/1
+FAT1 : 1-9
+FAT2 : 10-18
+start_rootdir : 19
+Data : 33-2879
+sectors : 2880
+cluster_size : 1
+no_of_cluster : 2847 (2 - 2848)
+fat_length 9 calculated 9
+heads/cylinder 2 (FAT) != 64 (HD)
+sect/track 18 (FAT) != 32 (HD)
+
+FAT12 at 129139/0/1
+     EFI System             264476672  264479551       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+
+HFS magic value at 129597/17/29
+part_size 37748994
+     Mac HFS                265415228  303164221   37748994
+     HFS blocksize=16777216, 19 GB / 18 GiB
+
+HFS magic value at 129597/17/31
+part_size 37748994
+     Mac HFS                227666238  265415231   37748994
+     HFS found using backup sector!, 19 GB / 18 GiB
+
+LVM magic value at 131074/6/24
+
+LVM magic value at 131190/32/25
+
+HFS magic value at 133694/61/31
+part_size 536936449
+     Mac HFS                273807294  810743742  536936449
+     HFS blocksize=33554432, 274 GB / 256 GiB
+
+HFS magic value at 133694/62/1
+
+LVM magic value at 133923/25/12
+
+LVM magic value at 135012/33/23
+NTFS at 135819/5/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278151315  278157488       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135819/5/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278157488  278163661       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135820/7/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278153427  278159600       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135820/7/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278159600  278165773       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135821/9/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278155539  278161712       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135821/9/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278161712  278167885       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135822/11/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278157651  278163824       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 135822/11/17
+heads/cylinder 16 (NTFS) != 64 (HD)
+sect/track 2 (NTFS) != 32 (HD)
+filesystem size           6174
+sectors_per_cluster       1
+mft_lcn                   2058
+mftmirr_lcn               5162
+clusters_per_mft_record   2
+clusters_per_index_record 8
+     MS Data                278163824  278169997       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+NTFS at 137308/58/9
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                281106249  281208648     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+NTFS at 137308/58/9
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                281208648  281311047     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+
+LVM magic value at 137448/50/6
+
+LVM magic value at 142778/60/8
+
+LVM magic value at 165208/37/23
+
+block_group_nr 2187
+
+recover_EXT2: "e2fsck -b 71663616 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=2187/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 2187
+
+recover_EXT2: "e2fsck -b 71663616 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=2187/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 2401
+
+recover_EXT2: "e2fsck -b 78675968 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=2401/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 2401
+
+recover_EXT2: "e2fsck -b 78675968 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=2401/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+LVM magic value at 357561/23/7
+
+cramfs Marker at 360348/59/23
+
+recover_cramfs
+     Linux filesys. data    737994614  740019721    2025108
+     cramfs, 1036 MB / 988 MiB
+
+cramfs Marker at 360348/59/24
+
+recover_cramfs
+     Linux filesys. data    737994615  740019722    2025108
+     cramfs, 1036 MB / 988 MiB
+NTFS at 368029/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                753623040  753725439     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+NTFS at 368029/63/32
+heads/cylinder 255 (NTFS) != 64 (HD)
+sect/track 63 (NTFS) != 32 (HD)
+filesystem size           102400
+sectors_per_cluster       8
+mft_lcn                   4266
+mftmirr_lcn               2
+clusters_per_mft_record   -10
+clusters_per_index_record 1
+     MS Data                753725439  753827838     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+     Linux Swap             778641400 24116731943 23338090544
+     SWAP2 version 2092689632, pagesize=8192, 11 TB / 10 TiB
+This partition ends after the disk limits. (start=778641400, size=23338090544, end=24116731943, disk end=2000409264)
+     Linux Swap             778641408  787029999    8388592
+     SWAP2 version 1, pagesize=4096, 4294 MB / 4095 MiB
+
+block_group_nr 3125
+
+recover_EXT2: "e2fsck -b 102400000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3125/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 3125
+
+recover_EXT2: "e2fsck -b 102400000 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=3125/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data   1001114360 2999317239 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+This partition ends after the disk limits. (start=1001114360, size=1998202880, end=2999317239, disk end=2000409264)
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data   1001342848 2999545727 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+This partition ends after the disk limits. (start=1001342848, size=1998202880, end=2999545727, disk end=2000409264)
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data   1001816760 3000019639 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+This partition ends after the disk limits. (start=1001816760, size=1998202880, end=3000019639, disk end=2000409264)
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data   1002109936 3000312815 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+This partition ends after the disk limits. (start=1002109936, size=1998202880, end=3000312815, disk end=2000409264)
+
+recover_EXT2: s_block_group_nr=0/7622, s_mnt_count=23/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+Last mount time:    Sat May 24 08:44:48 2025
+     Linux filesys. data   1002402840 3000605719 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+This partition ends after the disk limits. (start=1002402840, size=1998202880, end=3000605719, disk end=2000409264)
+
+block_group_nr 6561
+
+recover_EXT2: "e2fsck -b 214990848 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=6561/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+
+block_group_nr 6561
+
+recover_EXT2: "e2fsck -b 214990848 -B 4096 device" may be needed
+recover_EXT2: s_block_group_nr=6561/7622, s_mnt_count=0/4294967295, s_blocks_per_group=32768, s_inodes_per_group=8192
+recover_EXT2: s_blocksize=4096
+recover_EXT2: s_blocks_count 249775360
+recover_EXT2: part_size 1998202880
+Filesystem created: Sat May 10 09:40:04 2025
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+Disk /dev/nvme0n1 - 1024 GB / 953 GiB - CHS 976762 64 32
+Check the hard disk size: HD jumper settings, BIOS detection...
+The hard disk (1024 GB / 953 GiB) seems too small! (< 12 TB / 11 TiB)
+The following partitions can't be recovered:
+     Linux Swap             778641400 24116731943 23338090544
+     SWAP2 version 2092689632, pagesize=8192, 11 TB / 10 TiB
+     Linux filesys. data   1001114360 2999317239 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+     Linux filesys. data   1001342848 2999545727 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+     Linux filesys. data   1001816760 3000019639 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+     Linux filesys. data   1002109936 3000312815 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+     Linux filesys. data   1002402840 3000605719 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+
+Results
+     EFI System                  2048    2203647    2201600 [EFI System Partition] [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+     MS Data                     2054    2203653    2201600 [NO NAME]
+     FAT32, blocksize=4096, 1127 MB / 1075 MiB
+     Linux filesys. data      2203646 2000406525 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Backup_SB, 1023 GB / 952 GiB
+     Linux filesys. data      2203648 2000406527 1998202880
+     ext4 blocksize=4096 Large_file Sparse_SB Recover, 1023 GB / 952 GiB
+     EFI System              29813992   29822183       8192 [EFI System Partition] [MEMTEST-ESP]
+     FAT12, blocksize=2048, 4194 KB / 4096 KiB
+     EFI System              29822192   29830383       8192 [EFI System Partition] [MEMTEST-ESP]
+     FAT12, blocksize=2048, 4194 KB / 4096 KiB
+     MS Data                147703809  252454912  104751104
+     NTFS found using backup sector, blocksize=4096, 53 GB / 49 GiB
+     MS Data                147707904  252459007  104751104
+     NTFS found using backup sector, blocksize=4096, 53 GB / 49 GiB
+     Mac HFS                227666238  265415231   37748994
+     HFS found using backup sector!, 19 GB / 18 GiB
+     MS Data                252454912  357206015  104751104
+     NTFS, blocksize=4096, 53 GB / 49 GiB
+     MS Data                252459007  357210110  104751104
+     NTFS, blocksize=4096, 53 GB / 49 GiB
+     EFI System             254764336  254767215       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     MS Data                254765171  254771344       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                254771344  254777517       6174 [Boot]
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                263452673  263555072     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+     EFI System             263535296  263538175       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     MS Data                263555072  263657471     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+     EFI System             264052040  264054919       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     EFI System             264063560  264066439       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     EFI System             264473336  264476215       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     EFI System             264476672  264479551       2880 [EFI System Partition] [EFISECTOR]
+     FAT12, blocksize=512, 1474 KB / 1440 KiB
+     Mac HFS                265415228  303164221   37748994
+     HFS blocksize=16777216, 19 GB / 18 GiB
+     Mac HFS                273807294  810743742  536936449
+     HFS blocksize=33554432, 274 GB / 256 GiB
+     MS Data                278151315  278157488       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278153427  278159600       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278155539  278161712       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278157488  278163661       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278157651  278163824       6174
+     NTFS found using backup sector, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278159600  278165773       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278161712  278167885       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                278163824  278169997       6174
+     NTFS, blocksize=512, 3161 KB / 3087 KiB
+     MS Data                281106249  281208648     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+     MS Data                281208648  281311047     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+     Linux filesys. data    737994614  740019721    2025108
+     cramfs, 1036 MB / 988 MiB
+     Linux filesys. data    737994615  740019722    2025108
+     cramfs, 1036 MB / 988 MiB
+     MS Data                753623040  753725439     102400
+     NTFS found using backup sector, blocksize=4096, 52 MB / 50 MiB
+     MS Data                753725439  753827838     102400
+     NTFS, blocksize=4096, 52 MB / 50 MiB
+     Linux Swap             778641408  787029999    8388592
+     SWAP2 version 1, pagesize=4096, 4294 MB / 4095 MiB
+
+Hint for advanced users: dmsetup may be used if you prefer to avoid rewriting the partition table for the moment:
+echo "0 2201600 linear /dev/nvme0n1 2048" | dmsetup create test0
+echo "0 2201600 linear /dev/nvme0n1 2054" | dmsetup create test1
+echo "0 1998202880 linear /dev/nvme0n1 2203646" | dmsetup create test2
+echo "0 1998202880 linear /dev/nvme0n1 2203648" | dmsetup create test3
+echo "0 8192 linear /dev/nvme0n1 29813992" | dmsetup create test4
+echo "0 8192 linear /dev/nvme0n1 29822192" | dmsetup create test5
+echo "0 104751104 linear /dev/nvme0n1 147703809" | dmsetup create test6
+echo "0 104751104 linear /dev/nvme0n1 147707904" | dmsetup create test7
+echo "0 37748994 linear /dev/nvme0n1 227666238" | dmsetup create test8
+echo "0 104751104 linear /dev/nvme0n1 252454912" | dmsetup create test9
+echo "0 104751104 linear /dev/nvme0n1 252459007" | dmsetup create test10
+echo "0 2880 linear /dev/nvme0n1 254764336" | dmsetup create test11
+echo "0 6174 linear /dev/nvme0n1 254765171" | dmsetup create test12
+echo "0 6174 linear /dev/nvme0n1 254771344" | dmsetup create test13
+echo "0 102400 linear /dev/nvme0n1 263452673" | dmsetup create test14
+echo "0 2880 linear /dev/nvme0n1 263535296" | dmsetup create test15
+echo "0 102400 linear /dev/nvme0n1 263555072" | dmsetup create test16
+echo "0 2880 linear /dev/nvme0n1 264052040" | dmsetup create test17
+echo "0 2880 linear /dev/nvme0n1 264063560" | dmsetup create test18
+echo "0 2880 linear /dev/nvme0n1 264473336" | dmsetup create test19
+echo "0 2880 linear /dev/nvme0n1 264476672" | dmsetup create test20
+echo "0 37748994 linear /dev/nvme0n1 265415228" | dmsetup create test21
+echo "0 536936449 linear /dev/nvme0n1 273807294" | dmsetup create test22
+echo "0 6174 linear /dev/nvme0n1 278151315" | dmsetup create test23
+echo "0 6174 linear /dev/nvme0n1 278153427" | dmsetup create test24
+echo "0 6174 linear /dev/nvme0n1 278155539" | dmsetup create test25
+echo "0 6174 linear /dev/nvme0n1 278157488" | dmsetup create test26
+echo "0 6174 linear /dev/nvme0n1 278157651" | dmsetup create test27
+echo "0 6174 linear /dev/nvme0n1 278159600" | dmsetup create test28
+echo "0 6174 linear /dev/nvme0n1 278161712" | dmsetup create test29
+echo "0 6174 linear /dev/nvme0n1 278163824" | dmsetup create test30
+echo "0 102400 linear /dev/nvme0n1 281106249" | dmsetup create test31
+echo "0 102400 linear /dev/nvme0n1 281208648" | dmsetup create test32
+echo "0 2025108 linear /dev/nvme0n1 737994614" | dmsetup create test33
+echo "0 2025108 linear /dev/nvme0n1 737994615" | dmsetup create test34
+echo "0 102400 linear /dev/nvme0n1 753623040" | dmsetup create test35
+echo "0 102400 linear /dev/nvme0n1 753725439" | dmsetup create test36
+echo "0 8388592 linear /dev/nvme0n1 778641408" | dmsetup create test37
+SIGHUP detected! PhotoRec has been killed.
+SIGHUP detected! PhotoRec has been killed.

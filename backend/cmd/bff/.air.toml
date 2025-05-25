@@ -1,0 +1,8 @@
+root = "."  # Now relative to where you run the command
+tmp_dir = "tmp/bff"  # Relative to project root
+
+[build]
+bin = "tmp/bff/main"  # Relative to project root
+cmd = "go build -o tmp/bff/main ./cmd/bff"
+include_dir = ["cmd/bff", "internal/db", "internal/bff", "pkg/sharedlib"]
+exclude_dir = ["cmd/telegrambot", "internal/telegram"]

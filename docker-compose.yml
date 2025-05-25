@@ -1,0 +1,52 @@
+services:
+  db:
+    image: postgres:17.4
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: prost
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+      - ./scripts/db/docker-entrypoint-initdb:/docker-entrypoint-initdb.d/
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    depends_on:
+      - db
+  # bff:
+  #   build:
+  #     dockerfile: Bff.Dockerfile
+  #     context: ./backend
+  #   volumes:
+  #     - ./backend:/app
+  #   ports:
+  #     - 8080:8080
+  #   depends_on:
+  #     - db
+  # tg:
+  #   build:
+  #     dockerfile: Tg.Dockerfile
+  #     context: ./backend
+  #   restart: always
+  #   volumes:
+  #     - ./backend:/app
+  #   ports:
+  #     - 8081:8080
+  #   depends_on:
+  #     - db
+
+volumes:
+  pg-data:
+  pgadmin-data:
