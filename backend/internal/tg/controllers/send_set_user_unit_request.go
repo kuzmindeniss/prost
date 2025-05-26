@@ -7,7 +7,14 @@ import (
 )
 
 func SendSetUserUnitRequest(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
-	msg := tgbotapi.NewMessage(update.Message.Chat.ID, messages.SetUserUnit)
+	var chatID int64
+
+	if update.Message != nil {
+		chatID = update.Message.Chat.ID
+	} else {
+		chatID = update.CallbackQuery.Message.Chat.ID
+	}
+	msg := tgbotapi.NewMessage(chatID, messages.SetUserUnit)
 
 	buttons := make([][]tgbotapi.InlineKeyboardButton, 0)
 	for _, unit := range helpers.GetAllUnits() {

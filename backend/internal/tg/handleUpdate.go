@@ -39,6 +39,10 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 			controllers.SendSetUserNameRequest(bot, update)
 		}
 
+		if update.CallbackQuery.Data == "change_unit" {
+			controllers.SendSetUserUnitRequest(bot, update)
+		}
+
 		if strings.HasPrefix(update.CallbackQuery.Data, "save_unit:") {
 			callbacks.SaveUnit(bot, update, &user)
 		}

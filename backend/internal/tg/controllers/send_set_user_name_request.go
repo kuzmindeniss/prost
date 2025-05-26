@@ -7,7 +7,15 @@ import (
 )
 
 func SendSetUserNameRequest(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
-	msg := tgbotapi.NewMessage(update.Message.Chat.ID, messages.SetUserName)
+	var chatID int64
+
+	if update.Message != nil {
+		chatID = update.Message.Chat.ID
+	} else {
+		chatID = update.CallbackQuery.Message.Chat.ID
+	}
+
+	msg := tgbotapi.NewMessage(chatID, messages.SetUserName)
 
 	helpers.SendMessage(bot, &msg)
 }

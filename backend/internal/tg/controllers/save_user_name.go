@@ -13,16 +13,17 @@ import (
 func SaveUserName(bot *tgbotapi.BotAPI, update *tgbotapi.Update, userFromDb *repository.GetUserTgRow) {
 	userId := helpers.GetUserId(update)
 	isUserLogged := userFromDb != nil && userFromDb.ID != 0
+	newName := update.Message.Text
 
 	if !isUserLogged {
 		initializers.Repo.CreateUserTg(context.Background(), repository.CreateUserTgParams{
 			ID:         userId,
-			Name:       update.Message.From.FirstName,
+			Name:       newName,
 			TgUsername: update.Message.From.UserName,
 		})
 	} else {
 		initializers.Repo.UpdateUserTgName(context.Background(), repository.UpdateUserTgNameParams{
-			Name: update.Message.From.FirstName,
+			Name: newName,
 			ID:   userId,
 		})
 	}
