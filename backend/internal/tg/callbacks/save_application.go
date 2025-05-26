@@ -25,7 +25,7 @@ func SaveApplication(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user *reposi
 		panic(err)
 	}
 
-	msgText := fmt.Sprintf("*Заявка отправлена:* __%s__ *В подразделение:*  __%s__", applicationText, user.UnitName.String)
+	msgText := fmt.Sprintf("*Заявка отправлена:* __%s__ *В подразделение:*  __%s__", tgbotapi.EscapeText("MarkdownV2", applicationText), user.UnitName.String)
 
 	msg := tgbotapi.NewEditMessageText(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, msgText)
 
