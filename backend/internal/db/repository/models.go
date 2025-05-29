@@ -12,6 +12,48 @@ import (
 	"github.com/jackc/pgx/v5/pgtype"
 )
 
+type ApplicationStatus string
+
+const (
+	ApplicationStatusPending ApplicationStatus = "pending"
+	ApplicationStatusDone    ApplicationStatus = "done"
+)
+
+func (e *ApplicationStatus) Scan(src interface{}) error {
+	switch s := src.(type) {
+	case []byte:
+		*e = ApplicationStatus(s)
+	case string:
+		*e = ApplicationStatus(s)
+	default:
+		return fmt.Errorf("unsupported scan type for ApplicationStatus: %T", src)
+	}
+	return nil
+}
+
+type NullApplicationStatus struct {
+	ApplicationStatus ApplicationStatus `json:"application_status"`
+	Valid             bool              `json:"valid"` // Valid is true if ApplicationStatus is not NULL
+}
+
+// Scan implements the Scanner interface.
+func (ns *NullApplicationStatus) Scan(value interface{}) error {
+	if value == nil {
+		ns.ApplicationStatus, ns.Valid = "", false
+		return nil
+	}
+	ns.Valid = true
+	return ns.ApplicationStatus.Scan(value)
+}
+
+// Value implements the driver Valuer interface.
+func (ns NullApplicationStatus) Value() (driver.Value, error) {
+	if !ns.Valid {
+		return nil, nil
+	}
+	return string(ns.ApplicationStatus), nil
+}
+
 type UserRoles string
 
 const (
@@ -55,10 +97,11 @@ func (ns NullUserRoles) Value() (driver.Value, error) {
 }
 
 type Application struct {
-	ID       uuid.UUID   `json:"id"`
-	Text     string      `json:"text"`
-	UnitID   uuid.UUID   `json:"unit_id"`
-	UserTgID pgtype.Int8 `json:"user_tg_id"`
+	ID       uuid.UUID         `json:"id"`
+	Text     string            `json:"text"`
+	Status   ApplicationStatus `json:"status"`
+	UnitID   uuid.UUID         `json:"unit_id"`
+	UserTgID pgtype.Int8       `json:"user_tg_id"`
 }
 
 type Unit struct {

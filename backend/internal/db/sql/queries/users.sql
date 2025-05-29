@@ -35,3 +35,6 @@ UPDATE users_tg SET unit_id = @unit_id WHERE id = @user_id;
 INSERT INTO applications (text, unit_id, user_tg_id)
 VALUES ($1, $2, $3)
 RETURNING *;
+
+-- name: GetApplications :many
+SELECT * FROM applications;

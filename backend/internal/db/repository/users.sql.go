@@ -15,7 +15,7 @@ import (
 const createApplication = `-- name: CreateApplication :one
 INSERT INTO applications (text, unit_id, user_tg_id)
 VALUES ($1, $2, $3)
-RETURNING id, text, unit_id, user_tg_id
+RETURNING id, text, status, unit_id, user_tg_id
 `
 
 type CreateApplicationParams struct {
@@ -30,6 +30,7 @@ func (q *Queries) CreateApplication(ctx context.Context, arg CreateApplicationPa
 	err := row.Scan(
 		&i.ID,
 		&i.Text,
+		&i.Status,
 		&i.UnitID,
 		&i.UserTgID,
 	)
@@ -94,6 +95,36 @@ func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (Use
 		&i.UnitID,
 	)
 	return i, err
+}
+
+const getApplications = `-- name: GetApplications :many
+SELECT id, text, status, unit_id, user_tg_id FROM applications
+`
+
+func (q *Queries) GetApplications(ctx context.Context) ([]Application, error) {
+	rows, err := q.db.Query(ctx, getApplications)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []Application
+	for rows.Next() {
+		var i Application
+		if err := rows.Scan(
+			&i.ID,
+			&i.Text,
+			&i.Status,
+			&i.UnitID,
+			&i.UserTgID,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 const getUnits = `-- name: GetUnits :many

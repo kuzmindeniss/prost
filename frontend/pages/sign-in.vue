@@ -24,11 +24,12 @@ const authStore = useAuthStore()
 
 const onSubmit = handleSubmit(async (values) => {
   try {
-    const res = await $fetch(createUrl({ url: API_URLS.signIn }), {
+    const res = await $fetch<{ user: User, token: string }>(createUrl({ url: API_URLS.signIn }), {
       method: 'POST',
       body: values,
     })
-    console.log(res)
+    authStore.setAuth({ newUser: res.user })
+    useCookie('Authorization').value = res.token
     toast.add({ title: 'Вы успешно вошли', color: 'success' })
   }
   catch (e: any) {

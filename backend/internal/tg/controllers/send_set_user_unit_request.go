@@ -14,6 +14,7 @@ func SendSetUserUnitRequest(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
 	} else {
 		chatID = update.CallbackQuery.Message.Chat.ID
 	}
+
 	msg := tgbotapi.NewMessage(chatID, messages.SetUserUnit)
 
 	buttons := make([][]tgbotapi.InlineKeyboardButton, 0)
@@ -26,7 +27,11 @@ func SendSetUserUnitRequest(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
 		)
 	}
 
-	msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(buttons...)
+	if len(buttons) > 0 {
+		msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(buttons...)
+	} else {
+		msg.Text = "Нет доступных подразделений"
+	}
 
 	helpers.SendMessage(bot, &msg)
 }

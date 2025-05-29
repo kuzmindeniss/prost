@@ -11,9 +11,12 @@ CREATE TABLE users_tg (
   unit_id UUID REFERENCES units(id) ON DELETE SET NULL
 );
 
+CREATE TYPE application_status AS ENUM ('pending', 'done');
+
 CREATE TABLE applications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   text text NOT NULL,
+  status application_status NOT NULL DEFAULT 'pending',
   unit_id UUID REFERENCES units(id) ON DELETE SET NULL,
   user_tg_id BIGINT REFERENCES users_tg(id) ON DELETE SET NULL
 );

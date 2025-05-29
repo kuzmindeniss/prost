@@ -2,23 +2,31 @@ package main
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers/user"
-	"github.com/kuzmindeniss/prost/internal/bff/initializers"
+	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/middleware"
 )
 
 func init() {
-	initializers.LoadEnv()
-	initializers.ConnectToDb()
+	helpers.LoadEnv()
+	helpers.ConnectToDb()
 }
 
 func setupRouter() *gin.Engine {
 	r := gin.Default()
 
-	r.Use(cors.Default())
+	r.Use(cors.New(cors.Config{
+		AllowOrigins:     []string{"http://localhost:3000", "https://your-frontend-domain.com"},
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Length", "Content-Type", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: true,
+		MaxAge:           12 * time.Hour,
+	}))
 
 	// Ping test
 	r.GET("/ping", func(c *gin.Context) {

@@ -1,4 +1,4 @@
-package initializers
+package helpers
 
 import (
 	"context"
@@ -6,9 +6,12 @@ import (
 	"os"
 
 	"github.com/jackc/pgx/v5"
+	"github.com/kuzmindeniss/prost/internal/db/repository"
 )
 
 var DbConn *pgx.Conn
+
+var Repo *repository.Queries
 
 func ConnectToDb() {
 	var err error
@@ -21,4 +24,6 @@ func ConnectToDb() {
 	if err != nil {
 		panic(fmt.Sprintf("Unable to connect to database: %v\n", err))
 	}
+
+	Repo = repository.New(DbConn)
 }

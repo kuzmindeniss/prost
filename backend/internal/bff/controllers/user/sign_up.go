@@ -5,14 +5,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/initializers"
+	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/jwt"
 	"github.com/kuzmindeniss/prost/internal/db/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 
-func checkIfUserExists(c *gin.Context, repo *repository.Queries, email string) bool {
-	user, err := repo.GetUserByEmail(c, email)
+func checkIfUserExists(c *gin.Context, email string) bool {
+	user, err := helpers.Repo.GetUserByEmail(c, email)
 	if err != nil {
 		return false
 	}
@@ -33,9 +33,7 @@ func SignUp(c *gin.Context) {
 		return
 	}
 
-	repo := repository.New(initializers.DbConn)
-
-	if checkIfUserExists(c, repo, reqBody.Email) {
+	if checkIfUserExists(c, reqBody.Email) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "Пользователь с таким email уже есть",
 		})
@@ -50,7 +48,7 @@ func SignUp(c *gin.Context) {
 		return
 	}
 
-	createdUser, err := repo.CreateUser(c.Request.Context(), repository.CreateUserParams{
+	createdUser, err := helpers.Repo.CreateUser(c.Request.Context(), repository.CreateUserParams{
 		Name:         reqBody.Name,
 		Email:        reqBody.Email,
 		PasswordHash: string(hash),

@@ -2,6 +2,7 @@ export const API_URLS = {
   signIn: 'sign-in',
   signUp: 'sign-up',
   main: 'main',
+  authByToken: 'auth',
 }
 
 export const createUrl = ({ baseURL, url }: { baseURL?: string, url: string }) => {
