@@ -11,7 +11,7 @@ func GetAll(c *gin.Context) {
 	applications, err := helpers.Repo.GetApplications(c)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "Ошибка при получении заявок",
+			"error": "Ошибка при получении заявок: " + err.Error(),
 		})
 		return
 	}

@@ -1,10 +1,31 @@
 <script setup lang="ts">
-import type { Application } from '~/types/application'
+import type { Application, ApplicationStatus } from '~/types/application'
 
-defineProps<{
+const props = defineProps<{
   title: string
   applications: Application[]
 }>()
+
+const emit = defineEmits<{
+  'update-applications': [applications: Application[]]
+}>()
+
+// Handle marking an application as done
+const handleMarkDone = (id: string) => {
+  const updatedApplications = props.applications.map((app) => {
+    if (app.id === id) {
+      return { ...app, status: 'done' as ApplicationStatus }
+    }
+    return app
+  })
+  emit('update-applications', updatedApplications)
+}
+
+// Handle deleting an application
+const handleDelete = (id: string) => {
+  const updatedApplications = props.applications.filter(app => app.id !== id)
+  emit('update-applications', updatedApplications)
+}
 </script>
 
 <template>
@@ -13,13 +34,15 @@ defineProps<{
       {{ title }}
     </h2>
     <div
-      v-if="applications.length > 0"
+      v-if="applications?.length > 0"
       class="space-y-3"
     >
       <ApplicationsListItem
         v-for="application in applications"
         :key="application.id"
         :application="application"
+        @mark-done="handleMarkDone"
+        @delete="handleDelete"
       />
     </div>
     <div

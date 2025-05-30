@@ -5,32 +5,57 @@ definePageMeta({
   middleware: 'auth',
 })
 
-// Sample data - replace with your actual data source
-const pendingApplications = ref<Application[]>([
-  { id: '1', text: 'Frontend Developer', status: 'pending', unit: { id: '1', name: 'TechCorp' }, user: { id: '1', name: 'John Doe', tgUsername: 'john_doe', unit: { id: '1', name: 'TechCorp' } } },
-  { id: '2', text: 'UX Designer', status: 'pending', unit: { id: '2', name: 'DesignHub' }, user: { id: '2', name: 'Jane Smith', tgUsername: 'jane_smith', unit: { id: '2', name: 'DesignHub' } } },
-  { id: '3', text: 'Product Manager', status: 'pending', unit: { id: '3', name: 'InnovateSoft' }, user: { id: '3', name: 'Alice Johnson', tgUsername: 'alice_johnson', unit: { id: '3', name: 'InnovateSoft' } } },
-])
+const toast = useToast()
 
-const doneApplications = ref<Application[]>([
-  { id: '4', text: 'Backend Developer', status: 'done', unit: { id: '4', name: 'ServerTech' }, user: { id: '4', name: 'Bob Brown', tgUsername: 'bob_brown', unit: { id: '4', name: 'ServerTech' } } },
-  { id: '5', text: 'DevOps Engineer', status: 'done', unit: { id: '5', name: 'CloudSys' }, user: { id: '5', name: 'Charlie Davis', tgUsername: 'charlie_davis', unit: { id: '5', name: 'CloudSys' } } },
-])
+const { data: applications } = await useFetch<{ applications: Application[] }>(
+  createUrl({ url: '/applications' }),
+  {
+    onResponseError: (error) => {
+      toast.add({
+        title: `Ошибка при получении заявок: ${error}`,
+        color: 'error',
+      })
+    },
+  },
+)
+
+console.log(applications.value?.applications)
+
+const pendingApplications = computed(() => applications.value?.applications.filter(app => app.status === 'pending'))
+const doneApplications = computed(() => applications.value?.applications.filter(app => app.status === 'done'))
+
+// Update pending applications
+const updatePendingApplications = (applications: Application[]) => {
+  // Applications with 'done' status should be moved to the doneApplications list
+  const newPending = applications.filter(app => app.status === 'pending')
+  const newDone = applications.filter(app => app.status === 'done')
+  pendingApplications.value = newPending
+  if (newDone.length > 0) {
+    doneApplications.value = [...doneApplications.value, ...newDone]
+  }
+}
+
+// Update done applications
+const updateDoneApplications = (applications: Application[]) => {
+  doneApplications.value = applications
+}
 </script>
 
 <template>
   <div class="container mx-auto p-6">
     <h1 class="text-2xl font-bold mb-6">
-      Your Applications
+      Заявки
     </h1>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
       <ApplicationsList
-        title="Pending Applications"
+        title="Невыполненные заявки"
         :applications="pendingApplications"
+        @update-applications="updatePendingApplications"
       />
       <ApplicationsList
-        title="Done Applications"
+        title="Выполненные заявки"
         :applications="doneApplications"
+        @update-applications="updateDoneApplications"
       />
     </div>
   </div>

@@ -98,24 +98,44 @@ func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (Use
 }
 
 const getApplications = `-- name: GetApplications :many
-SELECT id, text, status, unit_id, user_tg_id FROM applications
+SELECT 
+    applications.id,
+    applications.text,
+    applications.status,
+    users_tg.id, users_tg.name, users_tg.tg_username, users_tg.unit_id,
+    units.id, units.name
+FROM applications
+LEFT JOIN users_tg ON applications.user_tg_id = users_tg.id
+LEFT JOIN units ON applications.unit_id = units.id
 `
 
-func (q *Queries) GetApplications(ctx context.Context) ([]Application, error) {
+type GetApplicationsRow struct {
+	ID      uuid.UUID         `json:"id"`
+	Text    string            `json:"text"`
+	Status  ApplicationStatus `json:"status"`
+	UsersTg UsersTg           `json:"users_tg"`
+	Unit    Unit              `json:"unit"`
+}
+
+func (q *Queries) GetApplications(ctx context.Context) ([]GetApplicationsRow, error) {
 	rows, err := q.db.Query(ctx, getApplications)
 	if err != nil {
 		return nil, err
 	}
 	defer rows.Close()
-	var items []Application
+	var items []GetApplicationsRow
 	for rows.Next() {
-		var i Application
+		var i GetApplicationsRow
 		if err := rows.Scan(
 			&i.ID,
 			&i.Text,
 			&i.Status,
-			&i.UnitID,
-			&i.UserTgID,
+			&i.UsersTg.ID,
+			&i.UsersTg.Name,
+			&i.UsersTg.TgUsername,
+			&i.UsersTg.UnitID,
+			&i.Unit.ID,
+			&i.Unit.Name,
 		); err != nil {
 			return nil, err
 		}

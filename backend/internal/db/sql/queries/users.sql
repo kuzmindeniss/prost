@@ -37,4 +37,12 @@ VALUES ($1, $2, $3)
 RETURNING *;
 
 -- name: GetApplications :many
-SELECT * FROM applications;
+SELECT 
+    applications.id,
+    applications.text,
+    applications.status,
+    sqlc.embed(users_tg),
+    sqlc.embed(units)
+FROM applications
+LEFT JOIN users_tg ON applications.user_tg_id = users_tg.id
+LEFT JOIN units ON applications.unit_id = units.id;
