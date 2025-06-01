@@ -5,6 +5,7 @@ export const API_URLS = {
   authByToken: 'auth',
   changeStatus: 'applications/change-status',
   delete: 'applications/delete',
+  units: 'units',
 }
 
 export const createUrl = ({ baseURL, url }: { baseURL?: string, url: string }) => {

@@ -7,6 +7,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers/applications"
+	"github.com/kuzmindeniss/prost/internal/bff/controllers/units"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers/user"
 	"github.com/kuzmindeniss/prost/internal/bff/middleware"
 )
@@ -36,6 +37,7 @@ func SetupRouter() *gin.Engine {
 	r.GET("/applications", applications.GetAll)
 	r.PATCH("/applications/change-status", applications.ChangeStatus)
 	r.DELETE("/applications/delete", applications.Delete)
+	r.GET("/units", units.GetAll)
 
 	return r
 }
