@@ -31,6 +31,7 @@ const onSubmit = handleSubmit(async (values) => {
     authStore.setAuth({ newUser: res.user })
     useCookie('Authorization').value = res.token
     toast.add({ title: 'Вы успешно вошли', color: 'success' })
+    navigateTo('/applications')
   }
   catch (e: any) {
     setFieldError('email', e?.data?.error ?? 'Ошибка при входе')

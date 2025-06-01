@@ -34,6 +34,8 @@ func SetupRouter() *gin.Engine {
 	r.POST("/auth", middleware.RequireAuth, user.Auth)
 
 	r.GET("/applications", applications.GetAll)
+	r.PATCH("/applications/change-status", applications.ChangeStatus)
+	r.DELETE("/applications/delete", applications.Delete)
 
 	return r
 }

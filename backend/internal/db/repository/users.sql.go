@@ -74,7 +74,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 }
 
 const createUserTg = `-- name: CreateUserTg :one
-INSERT INTO users_tg (id, name, tg_username)
+INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)
 RETURNING id, name, tg_username, unit_id
 `
@@ -85,9 +85,9 @@ type CreateUserTgParams struct {
 	TgUsername string `json:"tg_username"`
 }
 
-func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (UsersTg, error) {
+func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (UserTg, error) {
 	row := q.db.QueryRow(ctx, createUserTg, arg.ID, arg.Name, arg.TgUsername)
-	var i UsersTg
+	var i UserTg
 	err := row.Scan(
 		&i.ID,
 		&i.Name,
@@ -97,24 +97,33 @@ func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (Use
 	return i, err
 }
 
+const deleteApplication = `-- name: DeleteApplication :exec
+DELETE FROM applications WHERE id = $1
+`
+
+func (q *Queries) DeleteApplication(ctx context.Context, id uuid.UUID) error {
+	_, err := q.db.Exec(ctx, deleteApplication, id)
+	return err
+}
+
 const getApplications = `-- name: GetApplications :many
 SELECT 
     applications.id,
     applications.text,
     applications.status,
-    users_tg.id, users_tg.name, users_tg.tg_username, users_tg.unit_id,
+    user_tgs.id, user_tgs.name, user_tgs.tg_username, user_tgs.unit_id,
     units.id, units.name
 FROM applications
-LEFT JOIN users_tg ON applications.user_tg_id = users_tg.id
+LEFT JOIN user_tgs ON applications.user_tg_id = user_tgs.id
 LEFT JOIN units ON applications.unit_id = units.id
 `
 
 type GetApplicationsRow struct {
-	ID      uuid.UUID         `json:"id"`
-	Text    string            `json:"text"`
-	Status  ApplicationStatus `json:"status"`
-	UsersTg UsersTg           `json:"users_tg"`
-	Unit    Unit              `json:"unit"`
+	ID     uuid.UUID         `json:"id"`
+	Text   string            `json:"text"`
+	Status ApplicationStatus `json:"status"`
+	UserTg UserTg            `json:"user_tg"`
+	Unit   Unit              `json:"unit"`
 }
 
 func (q *Queries) GetApplications(ctx context.Context) ([]GetApplicationsRow, error) {
@@ -130,10 +139,10 @@ func (q *Queries) GetApplications(ctx context.Context) ([]GetApplicationsRow, er
 			&i.ID,
 			&i.Text,
 			&i.Status,
-			&i.UsersTg.ID,
-			&i.UsersTg.Name,
-			&i.UsersTg.TgUsername,
-			&i.UsersTg.UnitID,
+			&i.UserTg.ID,
+			&i.UserTg.Name,
+			&i.UserTg.TgUsername,
+			&i.UserTg.UnitID,
 			&i.Unit.ID,
 			&i.Unit.Name,
 		); err != nil {
@@ -213,7 +222,7 @@ func (q *Queries) GetUserById(ctx context.Context, id uuid.UUID) (User, error) {
 
 const getUserTg = `-- name: GetUserTg :one
 SELECT u.id, u.name AS user_name, u.unit_id, un.name AS unit_name
-FROM users_tg u
+FROM user_tgs u
 LEFT JOIN units un ON u.unit_id = un.id
 WHERE u.id = $1
 `
@@ -237,8 +246,30 @@ func (q *Queries) GetUserTg(ctx context.Context, id int64) (GetUserTgRow, error)
 	return i, err
 }
 
+const updateApplicationStatus = `-- name: UpdateApplicationStatus :one
+UPDATE applications SET status = $1 WHERE id = $2 RETURNING id, text, status, unit_id, user_tg_id
+`
+
+type UpdateApplicationStatusParams struct {
+	Status ApplicationStatus `json:"status"`
+	ID     uuid.UUID         `json:"id"`
+}
+
+func (q *Queries) UpdateApplicationStatus(ctx context.Context, arg UpdateApplicationStatusParams) (Application, error) {
+	row := q.db.QueryRow(ctx, updateApplicationStatus, arg.Status, arg.ID)
+	var i Application
+	err := row.Scan(
+		&i.ID,
+		&i.Text,
+		&i.Status,
+		&i.UnitID,
+		&i.UserTgID,
+	)
+	return i, err
+}
+
 const updateUserTgName = `-- name: UpdateUserTgName :exec
-UPDATE users_tg
+UPDATE user_tgs
 SET name = $1
 WHERE id = $2
 `
@@ -254,7 +285,7 @@ func (q *Queries) UpdateUserTgName(ctx context.Context, arg UpdateUserTgNamePara
 }
 
 const updateUserUnitID = `-- name: UpdateUserUnitID :exec
-UPDATE users_tg SET unit_id = $1 WHERE id = $2
+UPDATE user_tgs SET unit_id = $1 WHERE id = $2
 `
 
 type UpdateUserUnitIDParams struct {

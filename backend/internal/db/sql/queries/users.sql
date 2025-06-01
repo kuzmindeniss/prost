@@ -10,18 +10,18 @@ SELECT * FROM users WHERE email = $1;
 SELECT * FROM users WHERE id = $1;
 
 -- name: CreateUserTg :one
-INSERT INTO users_tg (id, name, tg_username)
+INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)
 RETURNING *;
 
 -- name: UpdateUserTgName :exec
-UPDATE users_tg
+UPDATE user_tgs
 SET name = @name
 WHERE id = @id;
 
 -- name: GetUserTg :one
 SELECT u.id, u.name AS user_name, u.unit_id, un.name AS unit_name
-FROM users_tg u
+FROM user_tgs u
 LEFT JOIN units un ON u.unit_id = un.id
 WHERE u.id = $1;
 
@@ -29,7 +29,7 @@ WHERE u.id = $1;
 SELECT * FROM units;
 
 -- name: UpdateUserUnitID :exec
-UPDATE users_tg SET unit_id = @unit_id WHERE id = @user_id;
+UPDATE user_tgs SET unit_id = @unit_id WHERE id = @user_id;
 
 -- name: CreateApplication :one
 INSERT INTO applications (text, unit_id, user_tg_id)
@@ -41,8 +41,14 @@ SELECT
     applications.id,
     applications.text,
     applications.status,
-    sqlc.embed(users_tg),
+    sqlc.embed(user_tgs),
     sqlc.embed(units)
 FROM applications
-LEFT JOIN users_tg ON applications.user_tg_id = users_tg.id
+LEFT JOIN user_tgs ON applications.user_tg_id = user_tgs.id
 LEFT JOIN units ON applications.unit_id = units.id;
+
+-- name: UpdateApplicationStatus :one
+UPDATE applications SET status = $1 WHERE id = $2 RETURNING *;
+
+-- name: DeleteApplication :exec
+DELETE FROM applications WHERE id = $1;

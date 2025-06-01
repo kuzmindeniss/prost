@@ -8,5 +8,5 @@ export interface Application {
   text: string
   status: ApplicationStatus
   unit: Unit
-  user: UserTg
+  user_tg: UserTg
 }

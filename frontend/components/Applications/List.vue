@@ -26,6 +26,20 @@ const changeStatus = async (id: string, status: ApplicationStatus) => {
   }
 }
 
+const handleDelete = async (id: string) => {
+  try {
+    await $fetch(createUrl({ url: API_URLS.delete }), {
+      method: 'DELETE',
+      body: { id },
+    })
+    toast.add({ title: 'Заявка удалена', color: 'success' })
+    props.applicationsUpdate()
+  }
+  catch {
+    toast.add({ title: 'Ошибка при удалении заявки', color: 'error' })
+  }
+}
+
 const handleMarkDone = async (id: string) => {
   await changeStatus(id, 'done')
 }
@@ -50,6 +64,7 @@ const handleMarkUndone = async (id: string) => {
         :application="application"
         @mark-done="handleMarkDone"
         @mark-undone="handleMarkUndone"
+        @delete="handleDelete"
       />
     </div>
     <div

@@ -65,6 +65,7 @@ const menuItems: DropdownMenuItem[] = [
         </h3>
         <p class="text-sm text-gray-600">
           {{ application.unit?.name }}
+          Отправил: {{ application.user_tg?.name }}
         </p>
       </div>
 

@@ -37,6 +37,7 @@ const onSubmit = handleSubmit(async (values) => {
 
     authStore.setAuth({ newUser: res.user })
     useCookie('Authorization').value = res.token
+    navigateTo('/applications')
 
     toast.add({ title: 'Вы успешно зарегестрировались', color: 'success' })
   }

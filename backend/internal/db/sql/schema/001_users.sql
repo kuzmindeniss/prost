@@ -4,7 +4,7 @@ CREATE TABLE units (
   name text NOT NULL
 );
 
-CREATE TABLE users_tg (
+CREATE TABLE user_tgs (
   id BIGINT PRIMARY KEY,
   name text NOT NULL,
   tg_username text NOT NULL,
@@ -18,7 +18,7 @@ CREATE TABLE applications (
   text text NOT NULL,
   status application_status NOT NULL DEFAULT 'pending',
   unit_id UUID REFERENCES units(id) ON DELETE SET NULL,
-  user_tg_id BIGINT REFERENCES users_tg(id) ON DELETE SET NULL
+  user_tg_id BIGINT REFERENCES user_tgs(id) ON DELETE SET NULL
 );
 
 CREATE TYPE user_roles AS ENUM ('admin', 'user');
@@ -51,9 +51,10 @@ EXECUTE FUNCTION update_updated_at();
 
 -- +goose Down
 DROP TABLE IF EXISTS applications;
-DROP TABLE IF EXISTS users_tg;
+DROP TABLE IF EXISTS user_tgs;
 DROP TABLE IF EXISTS units;
 DROP TRIGGER IF EXISTS trigger_update_updated_at ON users;
 DROP FUNCTION IF EXISTS update_updated_at;
 DROP TABLE IF EXISTS users;
 DROP TYPE IF EXISTS user_roles;
+DROP TYPE IF EXISTS application_status;

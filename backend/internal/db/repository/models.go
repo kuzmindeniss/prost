@@ -120,7 +120,7 @@ type User struct {
 	UpdatedAt    pgtype.Timestamp `json:"updated_at"`
 }
 
-type UsersTg struct {
+type UserTg struct {
 	ID         int64     `json:"id"`
 	Name       string    `json:"name"`
 	TgUsername string    `json:"tg_username"`
