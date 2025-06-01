@@ -3,28 +3,35 @@ import type { Application, ApplicationStatus } from '~/types/application'
 
 const props = defineProps<{
   title: string
-  applications: Application[]
+  applications?: Application[]
+  applicationsUpdate: () => void
 }>()
 
-const emit = defineEmits<{
-  'update-applications': [applications: Application[]]
-}>()
+const toast = useToast()
 
-// Handle marking an application as done
-const handleMarkDone = (id: string) => {
-  const updatedApplications = props.applications.map((app) => {
-    if (app.id === id) {
-      return { ...app, status: 'done' as ApplicationStatus }
-    }
-    return app
-  })
-  emit('update-applications', updatedApplications)
+const changeStatus = async (id: string, status: ApplicationStatus) => {
+  try {
+    await $fetch(createUrl({ url: API_URLS.changeStatus }), {
+      method: 'PATCH',
+      body: {
+        id,
+        status,
+      },
+    })
+    toast.add({ title: 'Статус заявки изменен', color: 'success' })
+    props.applicationsUpdate()
+  }
+  catch {
+    toast.add({ title: 'Ошибка при изменении статуса заявки', color: 'error' })
+  }
 }
 
-// Handle deleting an application
-const handleDelete = (id: string) => {
-  const updatedApplications = props.applications.filter(app => app.id !== id)
-  emit('update-applications', updatedApplications)
+const handleMarkDone = async (id: string) => {
+  await changeStatus(id, 'done')
+}
+
+const handleMarkUndone = async (id: string) => {
+  await changeStatus(id, 'pending')
 }
 </script>
 
@@ -34,7 +41,7 @@ const handleDelete = (id: string) => {
       {{ title }}
     </h2>
     <div
-      v-if="applications?.length > 0"
+      v-if="Boolean(applications?.length)"
       class="space-y-3"
     >
       <ApplicationsListItem
@@ -42,7 +49,7 @@ const handleDelete = (id: string) => {
         :key="application.id"
         :application="application"
         @mark-done="handleMarkDone"
-        @delete="handleDelete"
+        @mark-undone="handleMarkUndone"
       />
     </div>
     <div

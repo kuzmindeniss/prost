@@ -7,7 +7,7 @@ definePageMeta({
 
 const toast = useToast()
 
-const { data: applications } = await useFetch<{ applications: Application[] }>(
+const { data: applications, refresh } = await useFetch<{ applications: Application[] }>(
   createUrl({ url: '/applications' }),
   {
     onResponseError: (error) => {
@@ -19,26 +19,8 @@ const { data: applications } = await useFetch<{ applications: Application[] }>(
   },
 )
 
-console.log(applications.value?.applications)
-
 const pendingApplications = computed(() => applications.value?.applications.filter(app => app.status === 'pending'))
 const doneApplications = computed(() => applications.value?.applications.filter(app => app.status === 'done'))
-
-// Update pending applications
-const updatePendingApplications = (applications: Application[]) => {
-  // Applications with 'done' status should be moved to the doneApplications list
-  const newPending = applications.filter(app => app.status === 'pending')
-  const newDone = applications.filter(app => app.status === 'done')
-  pendingApplications.value = newPending
-  if (newDone.length > 0) {
-    doneApplications.value = [...doneApplications.value, ...newDone]
-  }
-}
-
-// Update done applications
-const updateDoneApplications = (applications: Application[]) => {
-  doneApplications.value = applications
-}
 </script>
 
 <template>
@@ -50,12 +32,12 @@ const updateDoneApplications = (applications: Application[]) => {
       <ApplicationsList
         title="Невыполненные заявки"
         :applications="pendingApplications"
-        @update-applications="updatePendingApplications"
+        :applications-update="refresh"
       />
       <ApplicationsList
         title="Выполненные заявки"
         :applications="doneApplications"
-        @update-applications="updateDoneApplications"
+        :applications-update="refresh"
       />
     </div>
   </div>

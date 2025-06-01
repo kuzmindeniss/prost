@@ -3,6 +3,7 @@ export const API_URLS = {
   signUp: 'sign-up',
   main: 'main',
   authByToken: 'auth',
+  changeStatus: 'applications/change-status',
 }
 
 export const createUrl = ({ baseURL, url }: { baseURL?: string, url: string }) => {
