@@ -1,11 +1,28 @@
 <script setup lang="ts">
+import * as v from 'valibot'
+import { toTypedSchema } from '@vee-validate/valibot'
 import type { Unit } from '~/types/unit'
 
 definePageMeta({
   middleware: 'auth',
 })
 
+const isCreatingModalOpen = ref(false)
+
 const toast = useToast()
+
+const { meta, defineField, resetForm, handleSubmit } = useForm({
+  validationSchema: toTypedSchema(
+    v.object({
+      name: v.pipe(v.string(), v.minLength(1, 'Введите имя')),
+    }),
+  ),
+  initialValues: {
+    name: '',
+  },
+})
+
+const [name, nameAttrs] = defineField('name')
 
 const { data, refresh } = await useFetch<{ units: Unit[] }>(
   createUrl({ url: API_URLS.units.all }),
@@ -18,17 +35,66 @@ const { data, refresh } = await useFetch<{ units: Unit[] }>(
     },
   },
 )
+
+const createUnit = handleSubmit(async (values) => {
+  await $fetch(createUrl({ url: API_URLS.units.create }), {
+    method: 'POST',
+    body: {
+      name: values.name,
+    },
+  })
+  refresh()
+  isCreatingModalOpen.value = false
+  resetForm()
+})
 </script>
 
 <template>
   <div class="container mx-auto p-6 max-w-200">
-    <h1 class="text-2xl font-bold mb-6">
-      Подразделения
-    </h1>
+    <div class="flex justify-between items-baseline mb-6">
+      <h1 class="text-2xl font-bold mb-6">
+        Подразделения
+      </h1>
+      <UModal
+        v-model:open="isCreatingModalOpen"
+        title="Создание подразделения"
+      >
+        <UButton color="primary">
+          Создать подразделение
+        </UButton>
+        <template #body>
+          <form
+            class="flex flex-col gap-4"
+            @submit="createUnit"
+          >
+            <UFormField
+              label="Название"
+              required
+            >
+              <UInput
+                v-model="name"
+                v-bind="nameAttrs"
+                class="w-full"
+              />
+            </UFormField>
+            <div class="flex justify-center gap-4">
+              <UButton
+                color="primary"
+                type="submit"
+                :disabled="!meta.valid"
+                class="w-full justify-center"
+              >
+                Создать
+              </UButton>
+            </div>
+          </form>
+        </template>
+      </UModal>
+    </div>
     <div class="grid grid-cols-1">
       <div class="bg-white rounded-lg shadow p-4">
         <div
-          v-if="Boolean(data?.units.length)"
+          v-if="Boolean(data?.units?.length)"
           class="space-y-3"
         >
           <UnitsListItem

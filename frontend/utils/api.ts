@@ -10,6 +10,7 @@ export const API_URLS = {
     all: 'units',
     changeName: 'units/change-name',
     delete: 'units/delete',
+    create: 'units/create',
   },
 }
 

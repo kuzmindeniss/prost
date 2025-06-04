@@ -47,11 +47,19 @@ FROM applications
 LEFT JOIN user_tgs ON applications.user_tg_id = user_tgs.id
 LEFT JOIN units ON applications.unit_id = units.id;
 
+-- name: GetApplicationsByUnitID :many
+SELECT * FROM applications WHERE unit_id = $1;
+
 -- name: UpdateApplicationStatus :one
 UPDATE applications SET status = $1 WHERE id = $2 RETURNING *;
 
 -- name: DeleteApplication :exec
 DELETE FROM applications WHERE id = $1;
+
+-- name: CreateUnit :one
+INSERT INTO units (name)
+VALUES ($1)
+RETURNING *;
 
 -- name: DeleteUnit :exec
 DELETE FROM units WHERE id = $1;

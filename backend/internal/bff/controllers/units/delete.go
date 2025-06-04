@@ -19,7 +19,22 @@ func Delete(c *gin.Context) {
 		return
 	}
 
-	err := helpers.Repo.DeleteUnit(c, reqBody.ID)
+	applications, err := helpers.Repo.GetApplicationsByUnitID(c, reqBody.ID)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Неверные данные: " + err.Error(),
+		})
+		return
+	}
+
+	if len(applications) > 0 {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "Невозможно удалить подразделение, так как оно используется в заявках",
+		})
+		return
+	}
+
+	err = helpers.Repo.DeleteUnit(c, reqBody.ID)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

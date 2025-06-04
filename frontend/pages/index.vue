@@ -34,7 +34,7 @@ const { data: unitsData } = await useFetch<{ units: Unit[] }>(
 )
 
 const unitsItems = computed<string[]>(() =>
-  unitsData.value?.units.map(unit => unit.name) ?? [],
+  unitsData.value?.units?.map(unit => unit.name) ?? [],
 )
 
 const filteredApplications = computed(() => {

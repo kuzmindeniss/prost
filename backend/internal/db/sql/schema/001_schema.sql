@@ -17,7 +17,7 @@ CREATE TABLE applications (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   text text NOT NULL,
   status application_status NOT NULL DEFAULT 'pending',
-  unit_id UUID REFERENCES units(id) ON DELETE SET NULL,
+  unit_id UUID REFERENCES units(id) ON DELETE RESTRICT,
   user_tg_id BIGINT REFERENCES user_tgs(id) ON DELETE SET NULL
 );
 
