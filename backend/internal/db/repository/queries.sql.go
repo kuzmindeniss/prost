@@ -15,7 +15,7 @@ import (
 const createApplication = `-- name: CreateApplication :one
 INSERT INTO applications (text, unit_id, user_tg_id)
 VALUES ($1, $2, $3)
-RETURNING id, text, status, unit_id, user_tg_id
+RETURNING id, text, status, unit_id, user_tg_id, created_at, updated_at
 `
 
 type CreateApplicationParams struct {
@@ -33,6 +33,8 @@ func (q *Queries) CreateApplication(ctx context.Context, arg CreateApplicationPa
 		&i.Status,
 		&i.UnitID,
 		&i.UserTgID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }
@@ -40,13 +42,18 @@ func (q *Queries) CreateApplication(ctx context.Context, arg CreateApplicationPa
 const createUnit = `-- name: CreateUnit :one
 INSERT INTO units (name)
 VALUES ($1)
-RETURNING id, name
+RETURNING id, name, created_at, updated_at
 `
 
 func (q *Queries) CreateUnit(ctx context.Context, name string) (Unit, error) {
 	row := q.db.QueryRow(ctx, createUnit, name)
 	var i Unit
-	err := row.Scan(&i.ID, &i.Name)
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
 	return i, err
 }
 
@@ -89,7 +96,7 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 const createUserTg = `-- name: CreateUserTg :one
 INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)
-RETURNING id, name, tg_username, unit_id
+RETURNING id, name, tg_username, unit_id, created_at, updated_at
 `
 
 type CreateUserTgParams struct {
@@ -106,6 +113,8 @@ func (q *Queries) CreateUserTg(ctx context.Context, arg CreateUserTgParams) (Use
 		&i.Name,
 		&i.TgUsername,
 		&i.UnitID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }
@@ -133,11 +142,12 @@ SELECT
     applications.id,
     applications.text,
     applications.status,
-    user_tgs.id, user_tgs.name, user_tgs.tg_username, user_tgs.unit_id,
-    units.id, units.name
+    user_tgs.id, user_tgs.name, user_tgs.tg_username, user_tgs.unit_id, user_tgs.created_at, user_tgs.updated_at,
+    units.id, units.name, units.created_at, units.updated_at
 FROM applications
 LEFT JOIN user_tgs ON applications.user_tg_id = user_tgs.id
 LEFT JOIN units ON applications.unit_id = units.id
+ORDER BY applications.created_at DESC
 `
 
 type GetApplicationsRow struct {
@@ -165,8 +175,12 @@ func (q *Queries) GetApplications(ctx context.Context) ([]GetApplicationsRow, er
 			&i.UserTg.Name,
 			&i.UserTg.TgUsername,
 			&i.UserTg.UnitID,
+			&i.UserTg.CreatedAt,
+			&i.UserTg.UpdatedAt,
 			&i.Unit.ID,
 			&i.Unit.Name,
+			&i.Unit.CreatedAt,
+			&i.Unit.UpdatedAt,
 		); err != nil {
 			return nil, err
 		}
@@ -179,7 +193,7 @@ func (q *Queries) GetApplications(ctx context.Context) ([]GetApplicationsRow, er
 }
 
 const getApplicationsByUnitID = `-- name: GetApplicationsByUnitID :many
-SELECT id, text, status, unit_id, user_tg_id FROM applications WHERE unit_id = $1
+SELECT id, text, status, unit_id, user_tg_id, created_at, updated_at FROM applications WHERE unit_id = $1 ORDER BY created_at DESC
 `
 
 func (q *Queries) GetApplicationsByUnitID(ctx context.Context, unitID uuid.UUID) ([]Application, error) {
@@ -197,6 +211,8 @@ func (q *Queries) GetApplicationsByUnitID(ctx context.Context, unitID uuid.UUID)
 			&i.Status,
 			&i.UnitID,
 			&i.UserTgID,
+			&i.CreatedAt,
+			&i.UpdatedAt,
 		); err != nil {
 			return nil, err
 		}
@@ -209,7 +225,7 @@ func (q *Queries) GetApplicationsByUnitID(ctx context.Context, unitID uuid.UUID)
 }
 
 const getUnits = `-- name: GetUnits :many
-SELECT id, name FROM units
+SELECT id, name, created_at, updated_at FROM units ORDER BY created_at DESC
 `
 
 func (q *Queries) GetUnits(ctx context.Context) ([]Unit, error) {
@@ -221,7 +237,12 @@ func (q *Queries) GetUnits(ctx context.Context) ([]Unit, error) {
 	var items []Unit
 	for rows.Next() {
 		var i Unit
-		if err := rows.Scan(&i.ID, &i.Name); err != nil {
+		if err := rows.Scan(
+			&i.ID,
+			&i.Name,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
 			return nil, err
 		}
 		items = append(items, i)
@@ -299,7 +320,7 @@ func (q *Queries) GetUserTg(ctx context.Context, id int64) (GetUserTgRow, error)
 }
 
 const updateApplicationStatus = `-- name: UpdateApplicationStatus :one
-UPDATE applications SET status = $1 WHERE id = $2 RETURNING id, text, status, unit_id, user_tg_id
+UPDATE applications SET status = $1 WHERE id = $2 RETURNING id, text, status, unit_id, user_tg_id, created_at, updated_at
 `
 
 type UpdateApplicationStatusParams struct {
@@ -316,12 +337,14 @@ func (q *Queries) UpdateApplicationStatus(ctx context.Context, arg UpdateApplica
 		&i.Status,
 		&i.UnitID,
 		&i.UserTgID,
+		&i.CreatedAt,
+		&i.UpdatedAt,
 	)
 	return i, err
 }
 
 const updateUnitName = `-- name: UpdateUnitName :one
-UPDATE units SET name = $1 WHERE id = $2 RETURNING id, name
+UPDATE units SET name = $1 WHERE id = $2 RETURNING id, name, created_at, updated_at
 `
 
 type UpdateUnitNameParams struct {
@@ -332,7 +355,12 @@ type UpdateUnitNameParams struct {
 func (q *Queries) UpdateUnitName(ctx context.Context, arg UpdateUnitNameParams) (Unit, error) {
 	row := q.db.QueryRow(ctx, updateUnitName, arg.Name, arg.ID)
 	var i Unit
-	err := row.Scan(&i.ID, &i.Name)
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
 	return i, err
 }
 

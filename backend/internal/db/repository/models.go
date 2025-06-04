@@ -97,16 +97,20 @@ func (ns NullUserRoles) Value() (driver.Value, error) {
 }
 
 type Application struct {
-	ID       uuid.UUID         `json:"id"`
-	Text     string            `json:"text"`
-	Status   ApplicationStatus `json:"status"`
-	UnitID   uuid.UUID         `json:"unit_id"`
-	UserTgID pgtype.Int8       `json:"user_tg_id"`
+	ID        uuid.UUID         `json:"id"`
+	Text      string            `json:"text"`
+	Status    ApplicationStatus `json:"status"`
+	UnitID    uuid.UUID         `json:"unit_id"`
+	UserTgID  pgtype.Int8       `json:"user_tg_id"`
+	CreatedAt pgtype.Timestamp  `json:"created_at"`
+	UpdatedAt pgtype.Timestamp  `json:"updated_at"`
 }
 
 type Unit struct {
-	ID   uuid.UUID `json:"id"`
-	Name string    `json:"name"`
+	ID        uuid.UUID        `json:"id"`
+	Name      string           `json:"name"`
+	CreatedAt pgtype.Timestamp `json:"created_at"`
+	UpdatedAt pgtype.Timestamp `json:"updated_at"`
 }
 
 type User struct {
@@ -121,8 +125,10 @@ type User struct {
 }
 
 type UserTg struct {
-	ID         int64     `json:"id"`
-	Name       string    `json:"name"`
-	TgUsername string    `json:"tg_username"`
-	UnitID     uuid.UUID `json:"unit_id"`
+	ID         int64            `json:"id"`
+	Name       string           `json:"name"`
+	TgUsername string           `json:"tg_username"`
+	UnitID     uuid.UUID        `json:"unit_id"`
+	CreatedAt  pgtype.Timestamp `json:"created_at"`
+	UpdatedAt  pgtype.Timestamp `json:"updated_at"`
 }

@@ -1,14 +1,18 @@
 -- +goose Up
 CREATE TABLE units (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name text NOT NULL
+  name text NOT NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
 );
 
 CREATE TABLE user_tgs (
   id BIGINT PRIMARY KEY,
   name text NOT NULL,
   tg_username text NOT NULL,
-  unit_id UUID REFERENCES units(id) ON DELETE SET NULL
+  unit_id UUID REFERENCES units(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
 );
 
 CREATE TYPE application_status AS ENUM ('pending', 'done');
@@ -18,7 +22,9 @@ CREATE TABLE applications (
   text text NOT NULL,
   status application_status NOT NULL DEFAULT 'pending',
   unit_id UUID REFERENCES units(id) ON DELETE RESTRICT,
-  user_tg_id BIGINT REFERENCES user_tgs(id) ON DELETE SET NULL
+  user_tg_id BIGINT REFERENCES user_tgs(id) ON DELETE SET NULL,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
 );
 
 CREATE TYPE user_roles AS ENUM ('admin', 'user');
@@ -46,6 +52,21 @@ $$ LANGUAGE plpgsql;
 
 CREATE TRIGGER trigger_update_updated_at
 BEFORE UPDATE ON users
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at();
+
+CREATE TRIGGER trigger_update_updated_at
+BEFORE UPDATE ON units
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at();
+
+CREATE TRIGGER trigger_update_updated_at
+BEFORE UPDATE ON user_tgs
+FOR EACH ROW
+EXECUTE FUNCTION update_updated_at();
+
+CREATE TRIGGER trigger_update_updated_at
+BEFORE UPDATE ON applications
 FOR EACH ROW
 EXECUTE FUNCTION update_updated_at();
 

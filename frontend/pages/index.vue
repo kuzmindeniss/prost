@@ -41,7 +41,7 @@ const filteredApplications = computed(() => {
   if (!selectedUnitName.value) {
     return applications.value?.applications ?? []
   }
-  return applications.value?.applications.filter(app => app.unit.name === selectedUnitName.value) ?? []
+  return applications.value?.applications?.filter(app => app.unit.name === selectedUnitName.value) ?? []
 })
 
 const clearFilter = () => {

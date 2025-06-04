@@ -103,6 +103,7 @@ const onSubmit = handleSubmit(async (values) => {
             v-model="name"
             v-bind="nameAttrs"
             autofocus
+            @keydown.esc="isEditing = false"
           />
           <UButton
             color="primary"
