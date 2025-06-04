@@ -23,7 +23,6 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 	isUserLogged := err == nil && user.ID != 0
 
 	isUnitChosen := user.UnitID != uuid.Nil
-	isResponseUnit, unitFromUserResponse := helpers.CheckIfMessageTextIsUnit(update.Message)
 
 	// Callbacks
 	if update.CallbackQuery != nil {
@@ -62,11 +61,6 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 
 	if !isUserLogged {
 		controllers.SendSetUserNameRequest(bot, update)
-		return
-	}
-
-	if isResponseUnit {
-		controllers.SetUserUnit(bot, update, &user, &unitFromUserResponse)
 		return
 	}
 

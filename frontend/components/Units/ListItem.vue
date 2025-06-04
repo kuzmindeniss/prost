@@ -16,13 +16,18 @@ const isSaving = ref(false)
 const isEditing = ref(false)
 
 const onDelete = async () => {
-  await $fetch(createUrl({ url: API_URLS.units.delete }), {
-    method: 'DELETE',
-    body: {
-      id: props.unit.id,
-    },
-  })
-  emit('update')
+  try {
+    await $fetch(createUrl({ url: API_URLS.units.delete }), {
+      method: 'DELETE',
+      body: {
+        id: props.unit.id,
+      },
+    })
+    emit('update')
+  }
+  catch (e: any) {
+    toast.add({ title: e.data.error ?? 'Ошибка при удалении', color: 'error' })
+  }
 }
 
 const { meta, defineField, resetForm, handleSubmit } = useForm({
