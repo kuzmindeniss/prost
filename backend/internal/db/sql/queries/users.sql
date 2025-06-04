@@ -52,3 +52,9 @@ UPDATE applications SET status = $1 WHERE id = $2 RETURNING *;
 
 -- name: DeleteApplication :exec
 DELETE FROM applications WHERE id = $1;
+
+-- name: DeleteUnit :exec
+DELETE FROM units WHERE id = $1;
+
+-- name: UpdateUnitName :one
+UPDATE units SET name = $1 WHERE id = $2 RETURNING *;

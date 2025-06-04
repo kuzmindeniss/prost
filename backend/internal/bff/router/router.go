@@ -37,7 +37,10 @@ func SetupRouter() *gin.Engine {
 	r.GET("/applications", applications.GetAll)
 	r.PATCH("/applications/change-status", applications.ChangeStatus)
 	r.DELETE("/applications/delete", applications.Delete)
+
 	r.GET("/units", units.GetAll)
+	r.PATCH("/units/change-name", units.ChangeName)
+	r.DELETE("/units/delete", units.Delete)
 
 	return r
 }

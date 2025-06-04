@@ -106,6 +106,15 @@ func (q *Queries) DeleteApplication(ctx context.Context, id uuid.UUID) error {
 	return err
 }
 
+const deleteUnit = `-- name: DeleteUnit :exec
+DELETE FROM units WHERE id = $1
+`
+
+func (q *Queries) DeleteUnit(ctx context.Context, id uuid.UUID) error {
+	_, err := q.db.Exec(ctx, deleteUnit, id)
+	return err
+}
+
 const getApplications = `-- name: GetApplications :many
 SELECT 
     applications.id,
@@ -265,6 +274,22 @@ func (q *Queries) UpdateApplicationStatus(ctx context.Context, arg UpdateApplica
 		&i.UnitID,
 		&i.UserTgID,
 	)
+	return i, err
+}
+
+const updateUnitName = `-- name: UpdateUnitName :one
+UPDATE units SET name = $1 WHERE id = $2 RETURNING id, name
+`
+
+type UpdateUnitNameParams struct {
+	Name string    `json:"name"`
+	ID   uuid.UUID `json:"id"`
+}
+
+func (q *Queries) UpdateUnitName(ctx context.Context, arg UpdateUnitNameParams) (Unit, error) {
+	row := q.db.QueryRow(ctx, updateUnitName, arg.Name, arg.ID)
+	var i Unit
+	err := row.Scan(&i.ID, &i.Name)
 	return i, err
 }
 
