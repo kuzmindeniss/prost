@@ -10,7 +10,7 @@ const toast = useToast()
 const selectedUnitName = ref<string | undefined>()
 
 const { data: applications, refresh } = await useFetch<{ applications: Application[] }>(
-  createUrl({ url: '/applications' }),
+  createUrl({ url: API_URLS.applications }),
   {
     onResponseError: (error) => {
       toast.add({
@@ -22,7 +22,7 @@ const { data: applications, refresh } = await useFetch<{ applications: Applicati
 )
 
 const { data: unitsData } = await useFetch<{ units: Unit[] }>(
-  createUrl({ url: API_URLS.units }),
+  createUrl({ url: API_URLS.units.all }),
   {
     onResponseError: (error) => {
       toast.add({
@@ -44,12 +44,12 @@ const filteredApplications = computed(() => {
   return applications.value?.applications.filter(app => app.unit.name === selectedUnitName.value) ?? []
 })
 
-const pendingApplications = computed(() => filteredApplications.value.filter(app => app.status === 'pending'))
-const doneApplications = computed(() => filteredApplications.value.filter(app => app.status === 'done'))
-
 const clearFilter = () => {
   selectedUnitName.value = undefined
 }
+
+const pendingApplications = computed(() => filteredApplications.value.filter(app => app.status === 'pending'))
+const doneApplications = computed(() => filteredApplications.value.filter(app => app.status === 'done'))
 </script>
 
 <template>

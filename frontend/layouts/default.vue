@@ -6,7 +6,7 @@ const authStore = useAuthStore()
 const authedNavigationItems: NavigationMenuItem[] = [
   {
     label: 'Заявки',
-    to: '/applications',
+    to: '/',
     icon: 'i-lucide-book-open',
   },
   {
