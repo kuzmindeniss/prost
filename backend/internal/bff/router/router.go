@@ -43,5 +43,7 @@ func SetupRouter() *gin.Engine {
 	r.DELETE("/units/delete", units.Delete)
 	r.POST("/units/create", units.Create)
 
+	r.GET("/users", user.GetAll)
+
 	return r
 }

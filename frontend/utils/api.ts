@@ -12,6 +12,9 @@ export const API_URLS = {
     delete: 'units/delete',
     create: 'units/create',
   },
+  users: {
+    all: 'users',
+  },
 }
 
 export const createUrl = ({ baseURL, url }: { baseURL?: string, url: string }) => {

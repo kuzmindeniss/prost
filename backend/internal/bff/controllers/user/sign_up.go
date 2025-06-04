@@ -51,6 +51,7 @@ func SignUp(c *gin.Context) {
 	createdUser, err := helpers.Repo.CreateUser(c.Request.Context(), repository.CreateUserParams{
 		Name:         reqBody.Name,
 		Email:        reqBody.Email,
+		Surname:      reqBody.Surname,
 		PasswordHash: string(hash),
 	})
 	if err != nil {

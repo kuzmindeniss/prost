@@ -319,6 +319,39 @@ func (q *Queries) GetUserTg(ctx context.Context, id int64) (GetUserTgRow, error)
 	return i, err
 }
 
+const getUsers = `-- name: GetUsers :many
+SELECT id, name, surname, email, password_hash, role, created_at, updated_at FROM users ORDER BY created_at DESC
+`
+
+func (q *Queries) GetUsers(ctx context.Context) ([]User, error) {
+	rows, err := q.db.Query(ctx, getUsers)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []User
+	for rows.Next() {
+		var i User
+		if err := rows.Scan(
+			&i.ID,
+			&i.Name,
+			&i.Surname,
+			&i.Email,
+			&i.PasswordHash,
+			&i.Role,
+			&i.CreatedAt,
+			&i.UpdatedAt,
+		); err != nil {
+			return nil, err
+		}
+		items = append(items, i)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
+}
+
 const updateApplicationStatus = `-- name: UpdateApplicationStatus :one
 UPDATE applications SET status = $1 WHERE id = $2 RETURNING id, text, status, unit_id, user_tg_id, created_at, updated_at
 `

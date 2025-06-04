@@ -9,6 +9,9 @@ SELECT * FROM users WHERE email = $1;
 -- name: GetUserById :one
 SELECT * FROM users WHERE id = $1;
 
+-- name: GetUsers :many
+SELECT * FROM users ORDER BY created_at DESC;
+
 -- name: CreateUserTg :one
 INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)

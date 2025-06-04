@@ -15,6 +15,11 @@ const authedNavigationItems: NavigationMenuItem[] = [
     icon: 'i-lucide-building',
   },
   {
+    label: 'Пользователи',
+    to: '/users',
+    icon: 'i-lucide-users',
+  },
+  {
     label: 'Выйти',
     to: '/sign-in',
     onSelect: (e) => {
