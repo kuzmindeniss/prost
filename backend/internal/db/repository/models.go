@@ -119,7 +119,7 @@ type User struct {
 	Surname      string           `json:"surname"`
 	Email        string           `json:"email"`
 	PasswordHash string           `json:"password_hash"`
-	Role         NullUserRoles    `json:"role"`
+	Role         UserRoles        `json:"role"`
 	CreatedAt    pgtype.Timestamp `json:"created_at"`
 	UpdatedAt    pgtype.Timestamp `json:"updated_at"`
 }

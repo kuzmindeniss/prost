@@ -53,6 +53,7 @@ func SignUp(c *gin.Context) {
 		Email:        reqBody.Email,
 		Surname:      reqBody.Surname,
 		PasswordHash: string(hash),
+		Role:         "user",
 	})
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
@@ -75,7 +76,7 @@ func SignUp(c *gin.Context) {
 			Name:    createdUser.Name,
 			Surname: createdUser.Surname,
 			Email:   createdUser.Email,
-			Role:    string(createdUser.Role.UserRoles),
+			Role:    string(createdUser.Role),
 		},
 		"token": token,
 	})

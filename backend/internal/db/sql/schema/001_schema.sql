@@ -35,7 +35,7 @@ CREATE TABLE users (
   surname text NOT NULL,
   email text NOT NULL UNIQUE,
   password_hash text NOT NULL,
-  role  USER_ROLES DEFAULT 'user',
+  role  USER_ROLES NOT NULL DEFAULT 'user',
   created_at TIMESTAMP DEFAULT now(),
   updated_at TIMESTAMP DEFAULT now()
 );

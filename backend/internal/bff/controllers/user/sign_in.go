@@ -57,7 +57,7 @@ func SignIn(c *gin.Context) {
 			Name:    user.Name,
 			Surname: user.Surname,
 			Email:   user.Email,
-			Role:    string(user.Role.UserRoles),
+			Role:    string(user.Role),
 		},
 		"token": token,
 	})
