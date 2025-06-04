@@ -14,6 +14,7 @@ export const API_URLS = {
   },
   users: {
     all: 'users',
+    changeRole: 'users/change-role',
   },
 }
 

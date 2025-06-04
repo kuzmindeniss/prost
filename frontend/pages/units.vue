@@ -7,6 +7,8 @@ definePageMeta({
   middleware: 'auth',
 })
 
+const authStore = useAuthStore()
+
 const isCreatingModalOpen = ref(false)
 
 const toast = useToast()
@@ -56,6 +58,7 @@ const createUnit = handleSubmit(async (values) => {
         Подразделения
       </h1>
       <UModal
+        v-if="authStore.isAdmin"
         v-model:open="isCreatingModalOpen"
         title="Создание подразделения"
       >

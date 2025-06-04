@@ -4,6 +4,8 @@ import * as v from 'valibot'
 import { toTypedSchema } from '@vee-validate/valibot'
 import type { Unit } from '~/types/unit'
 
+const authStore = useAuthStore()
+
 const props = defineProps<{
   unit: Unit
 }>()
@@ -132,6 +134,7 @@ const onSubmit = handleSubmit(async (values) => {
       </div>
 
       <UDropdownMenu
+        v-if="authStore.isAdmin"
         v-model:open="menuOpen"
         :items="menuItems"
         :content="{ align: 'end', side: 'bottom', sideOffset: 8 }"

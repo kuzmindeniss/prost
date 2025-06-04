@@ -4,8 +4,6 @@ export default defineNuxtRouteMiddleware(async () => {
     return navigateTo('/sign-in')
   }
 
-  console.log(token.value)
-
   const authStore = useAuthStore()
 
   try {

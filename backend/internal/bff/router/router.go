@@ -39,11 +39,12 @@ func SetupRouter() *gin.Engine {
 	r.DELETE("/applications/delete", applications.Delete)
 
 	r.GET("/units", units.GetAll)
-	r.PATCH("/units/change-name", units.ChangeName)
-	r.DELETE("/units/delete", units.Delete)
-	r.POST("/units/create", units.Create)
+	r.PATCH("/units/change-name", middleware.RequireAuth, middleware.RequireAuthAdmin, units.ChangeName)
+	r.DELETE("/units/delete", middleware.RequireAuth, middleware.RequireAuthAdmin, units.Delete)
+	r.POST("/units/create", middleware.RequireAuth, middleware.RequireAuthAdmin, units.Create)
 
 	r.GET("/users", user.GetAll)
+	r.PATCH("/users/change-role", middleware.RequireAuth, middleware.RequireAuthAdmin, user.ChangeRole)
 
 	return r
 }

@@ -12,6 +12,9 @@ SELECT * FROM users WHERE id = $1;
 -- name: GetUsers :many
 SELECT * FROM users ORDER BY created_at DESC;
 
+-- name: UpdateUserRole :one
+UPDATE users SET role = $1 WHERE id = $2 RETURNING *;
+
 -- name: CreateUserTg :one
 INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)

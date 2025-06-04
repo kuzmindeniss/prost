@@ -19,7 +19,9 @@ export const useAuthStore = defineStore('auth', () => {
     user.value = newUser
   }
 
-  return { user, setAuth }
+  const isAdmin = computed(() => user.value?.role === 'admin')
+
+  return { user, setAuth, isAdmin }
 }, {
   persist: {
     storage: piniaPluginPersistedstate.localStorage(),

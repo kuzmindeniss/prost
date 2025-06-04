@@ -7,7 +7,7 @@ definePageMeta({
 
 const toast = useToast()
 
-const { data } = await useFetch<{ users: User[] }>(
+const { data, refresh } = await useFetch<{ users: User[] }>(
   createUrl({ url: API_URLS.users.all }),
   {
     onResponseError: (error) => {
@@ -37,6 +37,7 @@ const { data } = await useFetch<{ users: User[] }>(
             v-for="user in data?.users"
             :key="user.id"
             :user="user"
+            @update="refresh"
           />
         </div>
         <div

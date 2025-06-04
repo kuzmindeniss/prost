@@ -397,6 +397,31 @@ func (q *Queries) UpdateUnitName(ctx context.Context, arg UpdateUnitNameParams) 
 	return i, err
 }
 
+const updateUserRole = `-- name: UpdateUserRole :one
+UPDATE users SET role = $1 WHERE id = $2 RETURNING id, name, surname, email, password_hash, role, created_at, updated_at
+`
+
+type UpdateUserRoleParams struct {
+	Role UserRoles `json:"role"`
+	ID   uuid.UUID `json:"id"`
+}
+
+func (q *Queries) UpdateUserRole(ctx context.Context, arg UpdateUserRoleParams) (User, error) {
+	row := q.db.QueryRow(ctx, updateUserRole, arg.Role, arg.ID)
+	var i User
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Surname,
+		&i.Email,
+		&i.PasswordHash,
+		&i.Role,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const updateUserTgName = `-- name: UpdateUserTgName :exec
 UPDATE user_tgs
 SET name = $1
