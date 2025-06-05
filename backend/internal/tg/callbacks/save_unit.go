@@ -19,7 +19,11 @@ func SaveUnit(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user *repository.Ge
 		UnitID: uuid.MustParse(unitId),
 	})
 
-	msg := tgbotapi.NewMessage(update.CallbackQuery.From.ID, messages.UnitSaved)
+	msgUnitSaved := tgbotapi.NewEditMessageText(update.CallbackQuery.Message.Chat.ID, update.CallbackQuery.Message.MessageID, messages.UnitSaved)
 
-	helpers.SendMessage(bot, &msg)
+	bot.Send(msgUnitSaved)
+
+	msgSendApplication := tgbotapi.NewMessage(update.CallbackQuery.From.ID, messages.SendApplication)
+
+	helpers.SendMessage(bot, &msgSendApplication)
 }

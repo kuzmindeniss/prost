@@ -1,7 +1,7 @@
 package messages
 
 const (
-	SetUserName     = "Введите ваше имя и инициалы"
+	SetUserName     = "Введите вашу фамилию и инициалы"
 	UserNameSaved   = "Имя сохранено"
 	SetUserUnit     = "Выберите подразделение"
 	UnitSet         = "Подразделение сохранено"

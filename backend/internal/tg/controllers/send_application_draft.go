@@ -18,7 +18,11 @@ __%s__
 
 🏗️ *Подразделение:*
 __%s__
-`, tgbotapi.EscapeText("MarkdownV2", update.Message.Text), user.UserName, user.UnitName.String)
+`,
+		tgbotapi.EscapeText("MarkdownV2", update.Message.Text),
+		tgbotapi.EscapeText("MarkdownV2", user.UserName),
+		tgbotapi.EscapeText("MarkdownV2", user.UnitName.String),
+	)
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, text)
 
 	msg.ParseMode = "MarkdownV2"

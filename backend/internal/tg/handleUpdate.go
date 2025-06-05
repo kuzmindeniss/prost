@@ -49,9 +49,17 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 		return
 	}
 
+	// Commands
+	isStartCommand := update.Message.Text == "/start"
+	isSendApplicationCommand := update.Message.Text == "/send_application"
+	isProfileCommand := update.Message.Text == "/profile"
+
+	isCommand := isStartCommand || isSendApplicationCommand || isProfileCommand
+
 	// User logging
 	isResponseOnSetUserNameRequest := helpers.LastBotReplyMsg[userId] != nil && helpers.LastBotReplyMsg[userId].Text == messages.SetUserName
-	if isResponseOnSetUserNameRequest {
+
+	if isResponseOnSetUserNameRequest && !isCommand {
 		controllers.SaveUserName(bot, update, &user)
 		if user.UnitName.String == "" {
 			controllers.SendSetUserUnitRequest(bot, update)
@@ -69,11 +77,7 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 		return
 	}
 
-	// Commands
-	isStartCommand := update.Message.Text == "/start"
-	isSendApplicationCommand := update.Message.Text == "/send_application"
-	isProfileCommand := update.Message.Text == "/profile"
-
+	// Commands handling
 	if isStartCommand || isSendApplicationCommand {
 		controllers.SendApplicationRequest(bot, update, &user)
 		return
