@@ -10,6 +10,7 @@ const toast = useToast()
 const { data, refresh } = await useFetch<{ users: User[] }>(
   createUrl({ url: API_URLS.users.all }),
   {
+    headers: getAuthHeaders(),
     onResponseError: (error) => {
       toast.add({
         title: `Ошибка при получении пользователей: ${error}`,

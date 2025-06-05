@@ -17,6 +17,7 @@ const changeStatus = async (id: string, status: ApplicationStatus) => {
         id,
         status,
       },
+      headers: getAuthHeaders(),
     })
     toast.add({ title: 'Статус заявки изменен', color: 'success' })
     props.applicationsUpdate()
@@ -31,6 +32,7 @@ const handleDelete = async (id: string) => {
     await $fetch(createUrl({ url: API_URLS.delete }), {
       method: 'DELETE',
       body: { id },
+      headers: getAuthHeaders(),
     })
     toast.add({ title: 'Заявка удалена', color: 'success' })
     props.applicationsUpdate()

@@ -33,6 +33,7 @@ const onSubmit = handleSubmit(async (values) => {
     const res = await $fetch<{ user: User, token: string }>(createUrl({ url: API_URLS.signUp }), {
       method: 'POST',
       body: values,
+      headers: getAuthHeaders(),
     })
 
     authStore.setAuth({ newUser: res.user })

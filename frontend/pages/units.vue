@@ -35,6 +35,7 @@ const { data, refresh } = await useFetch<{ units: Unit[] }>(
         color: 'error',
       })
     },
+    headers: getAuthHeaders(),
   },
 )
 
@@ -44,6 +45,7 @@ const createUnit = handleSubmit(async (values) => {
     body: {
       name: values.name,
     },
+    headers: getAuthHeaders(),
   })
   refresh()
   isCreatingModalOpen.value = false

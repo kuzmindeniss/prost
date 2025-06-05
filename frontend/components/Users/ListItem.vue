@@ -48,6 +48,7 @@ const onSubmit = handleSubmit(async (values) => {
         id: props.user.id,
         role: values.role,
       },
+      headers: getAuthHeaders(),
     })
     toast.add({ title: 'Роль пользователя успешно изменена', color: 'success' })
     isEditing.value = false

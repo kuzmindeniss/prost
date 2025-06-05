@@ -24,6 +24,7 @@ const onDelete = async () => {
       body: {
         id: props.unit.id,
       },
+      headers: getAuthHeaders(),
     })
     emit('update')
   }
@@ -75,6 +76,7 @@ const onSubmit = handleSubmit(async (values) => {
         id: props.unit.id,
         name: values.name,
       },
+      headers: getAuthHeaders(),
     })
     toast.add({ title: 'Имя подразделения успешно изменено', color: 'success' })
     isEditing.value = false

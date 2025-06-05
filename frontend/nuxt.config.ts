@@ -5,8 +5,8 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     '@nuxt/eslint',
     '@pinia/nuxt',
-    'pinia-plugin-persistedstate/nuxt',
   ],
+  ssr: false,
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   runtimeConfig: {
@@ -15,6 +15,13 @@ export default defineNuxtConfig({
     },
   },
   compatibilityDate: '2025-05-15',
+  nitro: {
+    prerender: {
+      crawlLinks: false,
+      ignore: [],
+      routes: [],
+    },
+  },
   eslint: {
     config: {
       stylistic: true,

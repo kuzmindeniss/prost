@@ -47,6 +47,19 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+    - ./frontend:/app
+    stdin_open: true
+    tty: true
+    depends_on:
+      - bff
+
 volumes:
   pg-data:
   pgadmin-data:

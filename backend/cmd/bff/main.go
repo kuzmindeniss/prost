@@ -1,6 +1,8 @@
 package main
 
 import (
+	"os"
+
 	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/router"
 )
@@ -12,5 +14,5 @@ func init() {
 
 func main() {
 	r := router.SetupRouter()
-	r.Run(":8080")
+	r.Run(":" + os.Getenv("PORT"))
 }

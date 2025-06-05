@@ -12,6 +12,7 @@ const selectedUnitName = ref<string | undefined>()
 const { data: applications, refresh } = await useFetch<{ applications: Application[] }>(
   createUrl({ url: API_URLS.applications }),
   {
+    headers: getAuthHeaders(),
     onResponseError: (error) => {
       toast.add({
         title: `Ошибка при получении заявок: ${error}`,
@@ -24,6 +25,7 @@ const { data: applications, refresh } = await useFetch<{ applications: Applicati
 const { data: unitsData } = await useFetch<{ units: Unit[] }>(
   createUrl({ url: API_URLS.units.all }),
   {
+    headers: getAuthHeaders(),
     onResponseError: (error) => {
       toast.add({
         title: `Ошибка при получении подразделений: ${error}`,

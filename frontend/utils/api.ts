@@ -23,3 +23,10 @@ export const createUrl = ({ baseURL, url }: { baseURL?: string, url: string }) =
 
   return (new URL(url, baseURL ?? config.public.backendUrl)).toString()
 }
+
+export const getAuthHeaders = () => {
+  const token = useCookie('Authorization')
+  return {
+    Authorization: `Bearer ${token.value}`,
+  }
+}

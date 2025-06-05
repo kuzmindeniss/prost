@@ -20,7 +20,7 @@
     "eslint": "^9.27.0",
     "nuxt": "^3.17.3",
     "pinia": "^3.0.2",
-    "pinia-plugin-persistedstate": "^4.3.0",
+    "serve": "^14.2.4",
     "tailwindcss": "^4.1.7",
     "valibot": "^1.1.0",
     "vee-validate": "^4.15.0",
