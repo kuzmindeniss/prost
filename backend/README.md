@@ -22,5 +22,5 @@ goose --dir internal/db/sql/schema postgres postgres://user:password@localhost:5
 
 ### Down
 ```bash
-goose --dir internal/db/sql/schema postgres postgres://user:password@localhost:5432/prost down
+goose --dir internal/db/sql/schema postgres postgres://user:password@localhost:5432/prost down-to 0
 ```
