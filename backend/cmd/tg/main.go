@@ -31,21 +31,6 @@ var commands = []tgbotapi.BotCommand{
 	},
 }
 
-// func setBotCommands(bot *tgbotapi.BotAPI) {
-// 	var botCommands []tgbotapi.BotCommand
-// 	for _, cmd := range commands {
-// 		botCommands = append(botCommands, tgbotapi.BotCommand{
-// 			Command: cmd.Command,
-// 		})
-// 	}
-
-// 	cfg := tgbotapi.NewSetMyCommands(botCommands...)
-// 	_, err := bot.Request(cfg)
-// 	if err != nil {
-// 		log.Printf("Error setting bot commands: %v", err)
-// 	}
-// }
-
 func init() {
 	initializers.LoadEnv()
 	initializers.ConnectToDb()
@@ -66,9 +51,6 @@ func main() {
 
 	bot.Debug = true
 	log.Printf("Authorized on account %s", bot.Self.UserName)
-
-	// Установка списка команд для меню бота
-	// setBotCommands(bot)
 
 	u := tgbotapi.NewUpdate(0)
 	u.Timeout = 60
