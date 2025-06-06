@@ -14,8 +14,8 @@ func ShowProfile(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user repository.
 		"📋 *Ваш профиль*\n\n"+
 			"👤 *Имя:* %s\n"+
 			"🏢 *Подразделение:* %s",
-		user.UserName,
-		user.UnitName.String,
+		tgbotapi.EscapeText("MarkdownV2", user.UserName),
+		tgbotapi.EscapeText("MarkdownV2", user.UnitName.String),
 	)
 
 	changeNameButton := tgbotapi.NewInlineKeyboardButtonData("Изменить имя", "change_name")
@@ -25,7 +25,7 @@ func ShowProfile(bot *tgbotapi.BotAPI, update *tgbotapi.Update, user repository.
 	unitRow := tgbotapi.NewInlineKeyboardRow(changeUnitButton)
 
 	msg := tgbotapi.NewMessage(update.Message.Chat.ID, profileText)
-	msg.ParseMode = "Markdown"
+	msg.ParseMode = "MarkdownV2"
 
 	msg.ReplyMarkup = tgbotapi.NewInlineKeyboardMarkup(nameRow, unitRow)
 
