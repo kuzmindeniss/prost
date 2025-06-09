@@ -93,6 +93,29 @@ func (q *Queries) CreateUser(ctx context.Context, arg CreateUserParams) (User, e
 	return i, err
 }
 
+const createUserNotificationTg = `-- name: CreateUserNotificationTg :one
+INSERT INTO user_notification_tgs (id, tg_username)
+VALUES ($1, $2)
+RETURNING id, tg_username, created_at, updated_at
+`
+
+type CreateUserNotificationTgParams struct {
+	ID         int64  `json:"id"`
+	TgUsername string `json:"tg_username"`
+}
+
+func (q *Queries) CreateUserNotificationTg(ctx context.Context, arg CreateUserNotificationTgParams) (UserNotificationTg, error) {
+	row := q.db.QueryRow(ctx, createUserNotificationTg, arg.ID, arg.TgUsername)
+	var i UserNotificationTg
+	err := row.Scan(
+		&i.ID,
+		&i.TgUsername,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
 const createUserTg = `-- name: CreateUserTg :one
 INSERT INTO user_tgs (id, name, tg_username)
 VALUES ($1, $2, $3)
@@ -134,6 +157,15 @@ DELETE FROM units WHERE id = $1
 
 func (q *Queries) DeleteUnit(ctx context.Context, id uuid.UUID) error {
 	_, err := q.db.Exec(ctx, deleteUnit, id)
+	return err
+}
+
+const deleteUserNotificationsTg = `-- name: DeleteUserNotificationsTg :exec
+DELETE FROM user_notification_tgs WHERE id = $1
+`
+
+func (q *Queries) DeleteUserNotificationsTg(ctx context.Context, id int64) error {
+	_, err := q.db.Exec(ctx, deleteUserNotificationsTg, id)
 	return err
 }
 
@@ -291,6 +323,46 @@ func (q *Queries) GetUserById(ctx context.Context, id uuid.UUID) (User, error) {
 		&i.UpdatedAt,
 	)
 	return i, err
+}
+
+const getUserNotificationsTg = `-- name: GetUserNotificationsTg :one
+SELECT id, tg_username, created_at, updated_at FROM user_notification_tgs WHERE id = $1
+`
+
+func (q *Queries) GetUserNotificationsTg(ctx context.Context, id int64) (UserNotificationTg, error) {
+	row := q.db.QueryRow(ctx, getUserNotificationsTg, id)
+	var i UserNotificationTg
+	err := row.Scan(
+		&i.ID,
+		&i.TgUsername,
+		&i.CreatedAt,
+		&i.UpdatedAt,
+	)
+	return i, err
+}
+
+const getUserNotificationsTgIds = `-- name: GetUserNotificationsTgIds :many
+SELECT id FROM user_notification_tgs
+`
+
+func (q *Queries) GetUserNotificationsTgIds(ctx context.Context) ([]int64, error) {
+	rows, err := q.db.Query(ctx, getUserNotificationsTgIds)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	var items []int64
+	for rows.Next() {
+		var id int64
+		if err := rows.Scan(&id); err != nil {
+			return nil, err
+		}
+		items = append(items, id)
+	}
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+	return items, nil
 }
 
 const getUserTg = `-- name: GetUserTg :one

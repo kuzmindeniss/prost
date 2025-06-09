@@ -5,12 +5,11 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"strconv"
-	"strings"
 	"sync"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/kuzmindeniss/prost/internal/db"
+	"github.com/kuzmindeniss/prost/internal/db/repository"
 	"github.com/kuzmindeniss/prost/internal/messaging"
 	"github.com/kuzmindeniss/prost/internal/tg/initializers"
 )
@@ -34,11 +33,7 @@ var commands = []tgbotapi.BotCommand{
 	},
 }
 
-// Global bot instance for use in message handlers
 var notificationBot *tgbotapi.BotAPI
-
-// adminChatIDs keeps track of all chat IDs that should receive notifications
-var adminChatIDs []int64
 
 func init() {
 	initializers.LoadEnv()
@@ -67,9 +62,6 @@ func main() {
 		log.Panic(err)
 	}
 
-	// Load admin chat IDs from environment
-	loadAdminChatIDs()
-
 	// Set bot commands
 	config := tgbotapi.NewSetMyCommands(commands...)
 	if _, err := notificationBot.Request(config); err != nil {
@@ -94,45 +86,19 @@ func main() {
 	wg.Wait()
 }
 
-// loadAdminChatIDs loads admin chat IDs from environment variable
-func loadAdminChatIDs() {
-	adminChatIDsStr := os.Getenv("ADMIN_CHAT_IDS")
-	if adminChatIDsStr == "" {
-		log.Println("Warning: ADMIN_CHAT_IDS not set, notifications will have nowhere to go")
-		return
-	}
-
-	// Parse comma-separated chat IDs
-	idStrings := strings.Split(adminChatIDsStr, ",")
-	for _, idStr := range idStrings {
-		idStr = strings.TrimSpace(idStr)
-		if idStr == "" {
-			continue
-		}
-
-		id, err := strconv.ParseInt(idStr, 10, 64)
-		if err != nil {
-			log.Printf("Error parsing chat ID %s: %v", idStr, err)
-			continue
-		}
-
-		adminChatIDs = append(adminChatIDs, id)
-	}
-
-	log.Printf("Loaded %d admin chat IDs for notifications", len(adminChatIDs))
-}
-
 // handleApplicationCreated is called when a new application created message is received from RabbitMQ
 func handleApplicationCreated(msg messaging.ApplicationMessage) error {
-	fmt.Printf("%+v\n", adminChatIDs)
-	fmt.Printf("%+v\n", msg)
-
 	if notificationBot == nil {
 		return fmt.Errorf("notification bot not initialized")
 	}
 
-	if len(adminChatIDs) == 0 {
-		log.Println("Warning: No admin chat IDs configured, can't send notification but acknowledging message")
+	ids, err := db.Repo.GetUserNotificationsTgIds(context.Background())
+	if err != nil {
+		panic(fmt.Sprintf("Users extracting error: %v", err))
+	}
+
+	if len(ids) == 0 {
+		log.Println("Warning: No users to send notification, can't send notification but acknowledging message")
 		return nil
 	}
 
@@ -141,16 +107,14 @@ func handleApplicationCreated(msg messaging.ApplicationMessage) error {
 		"🆕 *Новая заявка*\n\n"+
 			"*Текст:* %s\n\n"+
 			"*От:* %s\n"+
-			"*Подразделение:* %s\n"+
-			"*ID заявки:* `%s`",
+			"*Подразделение:* %s\n",
 		tgbotapi.EscapeText("MarkdownV2", msg.Text),
 		tgbotapi.EscapeText("MarkdownV2", msg.UserName),
 		tgbotapi.EscapeText("MarkdownV2", msg.UnitName),
-		tgbotapi.EscapeText("MarkdownV2", msg.ID),
 	)
 
 	// Send to all admin chats
-	for _, chatID := range adminChatIDs {
+	for _, chatID := range ids {
 		tgMsg := tgbotapi.NewMessage(chatID, message)
 		tgMsg.ParseMode = "MarkdownV2"
 
@@ -181,79 +145,42 @@ func handleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 		bot.Send(msg)
 
 	case "subscribe":
-		// Add this chat to the subscribers
-		adminChatIDsStr := os.Getenv("ADMIN_CHAT_IDS")
-		chatIDStr := strconv.FormatInt(chatID, 10)
+		_, err := db.Repo.CreateUserNotificationTg(context.Background(), repository.CreateUserNotificationTgParams{
+			ID: chatID,
+		})
 
-		if adminChatIDsStr == "" {
-			os.Setenv("ADMIN_CHAT_IDS", chatIDStr)
-			adminChatIDs = []int64{chatID}
-		} else if !contains(adminChatIDsStr, chatIDStr) {
-			newAdminChatIDsStr := adminChatIDsStr + "," + chatIDStr
-			os.Setenv("ADMIN_CHAT_IDS", newAdminChatIDsStr)
-			adminChatIDs = append(adminChatIDs, chatID)
+		if err != nil {
+			log.Printf("Error while subscribing user: %v", err)
+			msg := tgbotapi.NewMessage(chatID, "Произошла ошибка при подписке пользователя")
+			bot.Send(msg)
+			return
 		}
 
 		msg := tgbotapi.NewMessage(chatID, "✅ Вы успешно подписаны на уведомления о новых заявках!")
 		bot.Send(msg)
 
 	case "unsubscribe":
-		// Remove this chat from subscribers
-		removeAdminChatID(chatID)
+		err := db.Repo.DeleteUserNotificationsTg(context.Background(), chatID)
+		if err != nil {
+			log.Printf("Error while unsubscribing user: %v", err)
+			msg := tgbotapi.NewMessage(chatID, "Произошла ошибка при отписке пользователя")
+			bot.Send(msg)
+			return
+		}
 
 		msg := tgbotapi.NewMessage(chatID, "❌ Вы отписаны от уведомлений.")
 		bot.Send(msg)
 
 	case "status":
-		// Check if this chat is in the subscribers list
-		isSubscribed := false
-		for _, id := range adminChatIDs {
-			if id == chatID {
-				isSubscribed = true
-				break
-			}
-		}
-
-		if isSubscribed {
-			msg := tgbotapi.NewMessage(chatID, "✅ Вы подписаны на уведомления о новых заявках.")
-			bot.Send(msg)
-		} else {
+		user, err := db.Repo.GetUserNotificationsTg(context.Background(), chatID)
+		if err != nil || user.ID == 0 {
 			msg := tgbotapi.NewMessage(chatID, "❌ Вы не подписаны на уведомления.")
 			bot.Send(msg)
+			return
 		}
-	}
-}
 
-// removeAdminChatID removes a chat ID from the admin chat IDs list
-func removeAdminChatID(chatID int64) {
-	// Create a new slice with the removed chat ID
-	var newAdminChatIDs []int64
-	for _, id := range adminChatIDs {
-		if id != chatID {
-			newAdminChatIDs = append(newAdminChatIDs, id)
-		}
+		msg := tgbotapi.NewMessage(chatID, "✅ Вы подписаны на уведомления о новых заявках.")
+		bot.Send(msg)
+		return
 	}
-	adminChatIDs = newAdminChatIDs
-
-	// Update environment variable
-	var idStrings []string
-	for _, id := range adminChatIDs {
-		idStrings = append(idStrings, strconv.FormatInt(id, 10))
-	}
-	os.Setenv("ADMIN_CHAT_IDS", strings.Join(idStrings, ","))
-}
-
-// Helper function to check if a string contains a substring
-func contains(s, substr string) bool {
-	return strconv.Itoa(indexOf(s, substr)) != "-1"
-}
-
-// Helper function to find the index of a substring
-func indexOf(s, substr string) int {
-	for i := 0; i < len(s); i++ {
-		if i+len(substr) <= len(s) && s[i:i+len(substr)] == substr {
-			return i
-		}
-	}
-	return -1
 }

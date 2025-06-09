@@ -73,3 +73,17 @@ DELETE FROM units WHERE id = $1;
 
 -- name: UpdateUnitName :one
 UPDATE units SET name = $1 WHERE id = $2 RETURNING *;
+
+-- name: CreateUserNotificationTg :one
+INSERT INTO user_notification_tgs (id, tg_username)
+VALUES ($1, $2)
+RETURNING *;
+
+-- name: GetUserNotificationsTgIds :many
+SELECT id FROM user_notification_tgs;
+
+-- name: GetUserNotificationsTg :one
+SELECT * FROM user_notification_tgs WHERE id = $1;
+
+-- name: DeleteUserNotificationsTg :exec
+DELETE FROM user_notification_tgs WHERE id = $1;
