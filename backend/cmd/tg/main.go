@@ -8,10 +8,10 @@ import (
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/joho/godotenv"
+	"github.com/kuzmindeniss/prost/internal"
 	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/messaging"
 	"github.com/kuzmindeniss/prost/internal/tg"
-	"github.com/kuzmindeniss/prost/internal/tg/initializers"
 )
 
 type BotCommand struct {
@@ -35,7 +35,7 @@ var commands = []tgbotapi.BotCommand{
 }
 
 func init() {
-	initializers.LoadEnv()
+	internal.LoadEnv()
 	db.ConnectToDb()
 }
 

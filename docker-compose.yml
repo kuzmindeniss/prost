@@ -47,6 +47,8 @@ services:
       - 8080:8080
     depends_on:
       - db
+    env_file:
+      - .env
   tg:
     build:
       dockerfile: Tg.Dockerfile
@@ -59,9 +61,8 @@ services:
     depends_on:
       - db
       - rabbitmq
-    environment:
-      - TELEGRAM_API_TOKEN=${TELEGRAM_API_TOKEN}
-      - RABBITMQ_URI=amqp://user:password@rabbitmq:5672/
+    env_file:
+      - .env
       
   notifications-tg:
     build:
@@ -76,10 +77,8 @@ services:
       - db
       - rabbitmq
       - tg
-    environment:
-      - NOTIFICATION_BOT_TOKEN=${NOTIFICATION_BOT_TOKEN}
-      - ADMIN_CHAT_IDS=${ADMIN_CHAT_IDS}
-      - RABBITMQ_URI=amqp://user:password@rabbitmq:5672/
+    env_file:
+      - .env
 
   frontend:
     build:
@@ -89,6 +88,8 @@ services:
       - "3000:3000"
     stdin_open: true
     tty: true
+    env_file:
+      - .env
     depends_on:
       - bff
 

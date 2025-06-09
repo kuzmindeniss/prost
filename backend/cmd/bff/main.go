@@ -3,13 +3,13 @@ package main
 import (
 	"os"
 
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal"
 	"github.com/kuzmindeniss/prost/internal/bff/router"
 	"github.com/kuzmindeniss/prost/internal/db"
 )
 
 func init() {
-	helpers.LoadEnv()
+	internal.LoadEnv()
 	db.ConnectToDb()
 }
 
