@@ -50,10 +50,7 @@ func main() {
 		defer messaging.CloseRabbitMQ()
 	}
 
-	bot, err := tgbotapi.NewBotAPI(os.Getenv("TELEGRAM_API_TOKEN"))
-	if err != nil {
-		log.Panic(err)
-	}
+	bot := tg.InitBot(os.Getenv("TELEGRAM_API_TOKEN"))
 
 	config := tgbotapi.NewSetMyCommands(commands...)
 	if _, err := bot.Request(config); err != nil {
