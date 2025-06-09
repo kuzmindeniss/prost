@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/db/repository"
 )
 
@@ -21,7 +21,7 @@ func ChangeName(c *gin.Context) {
 		return
 	}
 
-	unit, err := helpers.Repo.UpdateUnitName(c, repository.UpdateUnitNameParams{
+	unit, err := db.Repo.UpdateUnitName(c, repository.UpdateUnitNameParams{
 		ID:   reqBody.ID,
 		Name: reqBody.Name,
 	})

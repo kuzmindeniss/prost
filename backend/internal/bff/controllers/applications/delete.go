@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 )
 
 func Delete(c *gin.Context) {
@@ -19,7 +19,7 @@ func Delete(c *gin.Context) {
 		return
 	}
 
-	err := helpers.Repo.DeleteApplication(c, reqBody.ID)
+	err := db.Repo.DeleteApplication(c, reqBody.ID)
 
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{

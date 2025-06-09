@@ -6,8 +6,8 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/jwt"
+	"github.com/kuzmindeniss/prost/internal/db"
 )
 
 func RequireAuth(c *gin.Context) {
@@ -26,7 +26,7 @@ func RequireAuth(c *gin.Context) {
 		return
 	}
 
-	user, err := helpers.Repo.GetUserById(c, userId)
+	user, err := db.Repo.GetUserById(c, userId)
 	if err != nil {
 		c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Ошибка при запросе пользователя"})
 		return

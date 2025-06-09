@@ -124,6 +124,13 @@ type User struct {
 	UpdatedAt    pgtype.Timestamp `json:"updated_at"`
 }
 
+type UserNotificationTg struct {
+	ID         int64            `json:"id"`
+	TgUsername string           `json:"tg_username"`
+	CreatedAt  pgtype.Timestamp `json:"created_at"`
+	UpdatedAt  pgtype.Timestamp `json:"updated_at"`
+}
+
 type UserTg struct {
 	ID         int64            `json:"id"`
 	Name       string           `json:"name"`

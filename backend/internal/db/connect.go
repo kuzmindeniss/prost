@@ -1,4 +1,4 @@
-package helpers
+package db
 
 import (
 	"context"
@@ -10,7 +10,6 @@ import (
 )
 
 var DbConn *pgx.Conn
-
 var Repo *repository.Queries
 
 func ConnectToDb() {

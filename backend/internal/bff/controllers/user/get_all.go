@@ -4,11 +4,11 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 )
 
 func GetAll(c *gin.Context) {
-	users, err := helpers.Repo.GetUsers(c)
+	users, err := db.Repo.GetUsers(c)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Ошибка при получении пользователей: " + err.Error(),

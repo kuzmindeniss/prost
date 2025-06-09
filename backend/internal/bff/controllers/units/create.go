@@ -5,7 +5,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 )
 
 func Create(c *gin.Context) {
@@ -18,7 +18,7 @@ func Create(c *gin.Context) {
 		return
 	}
 
-	unit, err := helpers.Repo.CreateUnit(c, reqBody.Name)
+	unit, err := db.Repo.CreateUnit(c, reqBody.Name)
 
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{

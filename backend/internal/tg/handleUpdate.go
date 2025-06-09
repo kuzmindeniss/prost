@@ -7,10 +7,10 @@ import (
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/google/uuid"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/tg/callbacks"
 	"github.com/kuzmindeniss/prost/internal/tg/controllers"
 	"github.com/kuzmindeniss/prost/internal/tg/helpers"
-	"github.com/kuzmindeniss/prost/internal/tg/initializers"
 	"github.com/kuzmindeniss/prost/internal/tg/messages"
 )
 
@@ -19,7 +19,7 @@ func HandleUpdate(bot *tgbotapi.BotAPI, update *tgbotapi.Update, wg *sync.WaitGr
 
 	userId := helpers.GetUserId(update)
 
-	user, err := initializers.Repo.GetUserTg(context.Background(), userId)
+	user, err := db.Repo.GetUserTg(context.Background(), userId)
 	isUserLogged := err == nil && user.ID != 0
 
 	isUnitChosen := user.UnitID != uuid.Nil

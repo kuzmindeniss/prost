@@ -5,8 +5,8 @@ import (
 	"log"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/tg/helpers"
-	"github.com/kuzmindeniss/prost/internal/tg/initializers"
 	"github.com/kuzmindeniss/prost/internal/tg/messages"
 )
 
@@ -23,7 +23,7 @@ func SendSetUserUnitRequest(bot *tgbotapi.BotAPI, update *tgbotapi.Update) {
 
 	buttons := make([][]tgbotapi.InlineKeyboardButton, 0)
 
-	units, err := initializers.Repo.GetUnits(context.Background())
+	units, err := db.Repo.GetUnits(context.Background())
 	if err != nil {
 		log.Printf("Failed to load units: %v", err)
 		msg.Text = "Ошибка при загрузке подразделений"

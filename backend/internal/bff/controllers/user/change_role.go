@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/db/repository"
 )
 
@@ -21,7 +21,7 @@ func ChangeRole(c *gin.Context) {
 		return
 	}
 
-	user, err := helpers.Repo.UpdateUserRole(c, repository.UpdateUserRoleParams{
+	user, err := db.Repo.UpdateUserRole(c, repository.UpdateUserRoleParams{
 		ID:   reqBody.ID,
 		Role: reqBody.Role,
 	})

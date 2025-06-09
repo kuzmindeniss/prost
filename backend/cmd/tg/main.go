@@ -1,12 +1,15 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"sync"
 
 	tgbotapi "github.com/go-telegram-bot-api/telegram-bot-api/v5"
 	"github.com/joho/godotenv"
+	"github.com/kuzmindeniss/prost/internal/db"
+	"github.com/kuzmindeniss/prost/internal/messaging"
 	"github.com/kuzmindeniss/prost/internal/tg"
 	"github.com/kuzmindeniss/prost/internal/tg/initializers"
 )
@@ -33,11 +36,19 @@ var commands = []tgbotapi.BotCommand{
 
 func init() {
 	initializers.LoadEnv()
-	initializers.ConnectToDb()
+	db.ConnectToDb()
 }
 
 func main() {
 	godotenv.Load()
+
+	// Initialize RabbitMQ
+	err := messaging.InitRabbitMQ()
+	if err != nil {
+		panic(fmt.Sprintf("Failed to initialize RabbitMQ: %v", err))
+	} else {
+		defer messaging.CloseRabbitMQ()
+	}
 
 	bot, err := tgbotapi.NewBotAPI(os.Getenv("TELEGRAM_API_TOKEN"))
 	if err != nil {

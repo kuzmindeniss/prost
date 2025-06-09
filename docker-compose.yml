@@ -12,6 +12,18 @@ services:
       - ./scripts/db/docker-entrypoint-initdb:/docker-entrypoint-initdb.d/
     restart: unless-stopped
 
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"   # AMQP protocol port
+      - "15672:15672" # Management UI
+    environment:
+      - RABBITMQ_DEFAULT_USER=user
+      - RABBITMQ_DEFAULT_PASS=password
+    volumes:
+      - rabbitmq-data:/var/lib/rabbitmq
+    restart: unless-stopped
+
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin4_container
@@ -46,13 +58,35 @@ services:
       - 8081:8080
     depends_on:
       - db
+      - rabbitmq
+    environment:
+      - TELEGRAM_API_TOKEN=${TELEGRAM_API_TOKEN}
+      - RABBITMQ_URI=amqp://user:password@rabbitmq:5672/
+      
+  notifications-tg:
+    build:
+      dockerfile: NotificationsTg.Dockerfile
+      context: ./backend
+    restart: always
+    volumes:
+      - ./backend:/app
+    ports:
+      - 8082:8080
+    depends_on:
+      - db
+      - rabbitmq
+      - tg
+    environment:
+      - NOTIFICATION_BOT_TOKEN=${NOTIFICATION_BOT_TOKEN}
+      - ADMIN_CHAT_IDS=${ADMIN_CHAT_IDS}
+      - RABBITMQ_URI=amqp://user:password@rabbitmq:5672/
 
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "3001:3001"
+      - "3000:3000"
     stdin_open: true
     tty: true
     depends_on:
@@ -61,3 +95,4 @@ services:
 volumes:
   pg-data:
   pgadmin-data:
+  rabbitmq-data:

@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/jwt"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -21,7 +21,7 @@ func SignIn(c *gin.Context) {
 		return
 	}
 
-	user, err := helpers.Repo.GetUserByEmail(c, reqBody.Email)
+	user, err := db.Repo.GetUserByEmail(c, reqBody.Email)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "Неверные данные",

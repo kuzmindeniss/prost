@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/db/repository"
 )
 
@@ -21,7 +21,7 @@ func ChangeStatus(c *gin.Context) {
 		return
 	}
 
-	application, err := helpers.Repo.UpdateApplicationStatus(c, repository.UpdateApplicationStatusParams{
+	application, err := db.Repo.UpdateApplicationStatus(c, repository.UpdateApplicationStatusParams{
 		ID:     reqBody.ID,
 		Status: reqBody.Status,
 	})

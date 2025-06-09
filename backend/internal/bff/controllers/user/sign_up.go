@@ -5,14 +5,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/kuzmindeniss/prost/internal/bff/controllers"
-	"github.com/kuzmindeniss/prost/internal/bff/helpers"
 	"github.com/kuzmindeniss/prost/internal/bff/jwt"
+	"github.com/kuzmindeniss/prost/internal/db"
 	"github.com/kuzmindeniss/prost/internal/db/repository"
 	"golang.org/x/crypto/bcrypt"
 )
 
 func checkIfUserExists(c *gin.Context, email string) bool {
-	user, err := helpers.Repo.GetUserByEmail(c, email)
+	user, err := db.Repo.GetUserByEmail(c, email)
 	if err != nil {
 		return false
 	}
@@ -48,7 +48,7 @@ func SignUp(c *gin.Context) {
 		return
 	}
 
-	createdUser, err := helpers.Repo.CreateUser(c.Request.Context(), repository.CreateUserParams{
+	createdUser, err := db.Repo.CreateUser(c.Request.Context(), repository.CreateUserParams{
 		Name:         reqBody.Name,
 		Email:        reqBody.Email,
 		Surname:      reqBody.Surname,
