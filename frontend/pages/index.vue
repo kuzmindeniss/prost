@@ -56,28 +56,31 @@ const doneApplications = computed(() => filteredApplications.value.filter(app =>
 
 <template>
   <div class="container mx-auto p-6">
-    <h1 class="text-2xl font-bold mb-6">
+    <h1 class="text-2xl text-center md:text-left font-bold mb-6">
       Заявки
     </h1>
-    <div class="mb-6 flex flex-wrap items-center gap-4">
+    <div class="mb-6 flex flex-col md:flex-row items-center gap-4">
       <UFormField
         label="Фильтр по подразделению"
       >
-        <USelectMenu
-          v-model="selectedUnitName"
-          :items="unitsItems"
-          placeholder="Выберите подразделение"
-          class="min-w-60 mr-4"
-          clearable
-        />
-        <UButton
-          v-if="selectedUnitName"
-          color="secondary"
-          size="sm"
-          @click="clearFilter"
-        >
-          Сбросить фильтр
-        </UButton>
+        <div class="flex flex-col md:flex-row gap-4">
+          <USelectMenu
+            v-model="selectedUnitName"
+            :items="unitsItems"
+            placeholder="Выберите подразделение"
+            class="min-w-60"
+            clearable
+          />
+          <UButton
+            v-if="selectedUnitName"
+            color="secondary"
+            size="sm"
+            class="justify-center"
+            @click="clearFilter"
+          >
+            Сбросить фильтр
+          </UButton>
+        </div>
       </UFormField>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">

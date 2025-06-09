@@ -23,8 +23,8 @@ const { data, refresh } = await useFetch<{ users: User[] }>(
 
 <template>
   <div class="container mx-auto p-6 max-w-200">
-    <div class="flex justify-between items-baseline mb-6">
-      <h1 class="text-2xl font-bold mb-6">
+    <div class="flex flex-col md:flex-row items-center md:justify-between md:items-baseline mb-6">
+      <h1 class="text-2xl text-center md:text-left font-bold mb-6">
         Пользователи
       </h1>
     </div>

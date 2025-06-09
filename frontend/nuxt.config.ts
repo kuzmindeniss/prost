@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     '@vee-validate/nuxt',
     '@nuxt/eslint',
     '@pinia/nuxt',
+    '@vueuse/nuxt',
   ],
   ssr: false,
   devtools: { enabled: true },

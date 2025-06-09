@@ -55,7 +55,7 @@ const createUnit = handleSubmit(async (values) => {
 
 <template>
   <div class="container mx-auto p-6 max-w-200">
-    <div class="flex justify-between items-baseline mb-6">
+    <div class="flex flex-col md:flex-row items-center justify-between md:items-baseline mb-6">
       <h1 class="text-2xl font-bold mb-6">
         Подразделения
       </h1>

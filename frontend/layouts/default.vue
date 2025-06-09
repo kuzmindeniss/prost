@@ -3,6 +3,8 @@ import type { NavigationMenuItem } from '@nuxt/ui'
 
 const authStore = useAuthStore()
 
+const { width } = useWindowSize()
+
 const authedNavigationItems: NavigationMenuItem[] = [
   {
     label: 'Заявки',
@@ -45,6 +47,8 @@ const unauthedNavigationItems: NavigationMenuItem[] = [
 ]
 
 const navigationItems = computed(() => authStore.user?.email ? authedNavigationItems : unauthedNavigationItems)
+
+const orientation = computed(() => width.value < 768 ? 'vertical' : 'horizontal')
 </script>
 
 <template>
@@ -52,8 +56,8 @@ const navigationItems = computed(() => authStore.user?.email ? authedNavigationI
     <div class="flex flex-col h-screen">
       <UNavigationMenu
         :items="navigationItems"
-        orientation="horizontal"
-        class="flex-shrink-0 p-4 justify-center"
+        :orientation="orientation"
+        class="flex-shrink-0 p-4 items-center justify-center"
       />
       <slot />
     </div>

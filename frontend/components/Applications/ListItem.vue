@@ -60,7 +60,7 @@ const menuItems: DropdownMenuItem[] = [
       }"
     >
       <div>
-        <h3 class="font-medium">
+        <h3 class="font-medium break-all">
           {{ application.text }}
         </h3>
         <p class="text-sm text-gray-600">
