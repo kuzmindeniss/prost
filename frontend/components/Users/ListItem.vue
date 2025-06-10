@@ -84,7 +84,7 @@ const onSubmit = handleSubmit(async (values) => {
         />
         <form
           v-else
-          class="flex items-center gap-2"
+          class="flex items-center gap-2 flex-col sm:flex-row"
           @submit="onSubmit"
         >
           <USelect
